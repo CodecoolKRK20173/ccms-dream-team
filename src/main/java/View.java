@@ -37,15 +37,15 @@ public class View {
                 " (0) Exit CcMS");
     }
 
-    public String getNickFromUser(){
+    public String takeLoginFromUser(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter nick:\t");
-        String nick = scanner.nextLine();
+        String login = scanner.nextLine();
         scanner.close();
-        return nick;
+        return login;
     }
 
-    public String getPasswordFromUser(){
+    public String takePasswordFromUser(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter password:\t");
         String password = scanner.nextLine();
@@ -69,6 +69,14 @@ public class View {
         return surname;
     }
 
+    public String takeUserType(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter user type (mentor / student ):\t");
+        String usType = scanner.nextLine();
+        scanner.close();
+        return usType;
+    }
+
     public void showStudentsList(ArrayList studentsList){
         for (int i = 0; i <= studentsList.size(); i++ ){
             System.out.println(studentsList.get(i));
@@ -79,5 +87,19 @@ public class View {
         for (int i = 0; i <= mentorsList.size(); i++) {
             System.out.println(mentorsList.get(i));
         }
+    }
+
+    public int getIdFromUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter id:\t");
+        int id = scanner.nextInt();
+        return id;
+    }
+
+    public int getOption(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter option:\t");
+        int option = scanner.nextInt();
+        return option;
     }
 }
