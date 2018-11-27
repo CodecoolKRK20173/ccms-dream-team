@@ -70,13 +70,13 @@ public class View {
     }
 
     public void showStudentsList(ArrayList studentsList){
-        for (int i = 0; i < studentsList.size(); i++ ){
+        for (int i = 0; i <= studentsList.size(); i++ ){
             System.out.println(studentsList.get(i));
         }
     }
 
     public void showMentorsList (ArrayList mentorsList){
-        for (int i = 0; i < mentorsList.size(); i++) {
+        for (int i = 0; i <= mentorsList.size(); i++) {
             System.out.println(mentorsList.get(i));
         }
     }
