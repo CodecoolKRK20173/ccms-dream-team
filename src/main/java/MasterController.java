@@ -37,27 +37,27 @@ public class MasterController {
             //disconnect();
             sqlStatement.close();
             c.close();
-            return null;
+            //return null;
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        return null;
+        //return null;
     }
 
     private void createUserController() {
-        if(this.userType.equals("admin")) {
-            new AdminController(this.id, this.view, new DaoAdmin());
-        }
-        else if(this.userType.equals("office")) {
-            new OfficeController(this.id, this.view, new DaoOffice());
-        }
-        else if(this.userType.equals("mentor")) {
-            new MentorController(this.id, this.view, new DaoMentor());
-        }
-        else if(this.userType.equals("student")) {
-            new StudentController(this.id, this.view, new DaoStudent());
-        }
+//        if(this.userType.equals("admin")) {
+//            new AdminController(this.id, this.view, new DaoAdmin());
+//        }
+//        else if(this.userType.equals("office")) {
+//            new OfficeController(this.id, this.view, new DaoOffice());
+//        }
+//        else if(this.userType.equals("mentor")) {
+//            new MentorController(this.id, this.view, new DaoMentor());
+//        }
+//        else if(this.userType.equals("student")) {
+//            new StudentController(this.id, this.view, new DaoStudent());
+//        }
     }
 
 }

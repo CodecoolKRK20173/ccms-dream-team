@@ -51,13 +51,13 @@ public class View {
         return option;
     }
 
-    public int getId(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter id: ");
-        int id = scanner.nextLine();
-        scanner.close();
-        return id;
-    }
+//    public int getId(){
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter id: ");
+//        int id = scanner.nextLine();
+//        scanner.close();
+//        return id;
+//    }
 
     public String getNickFromUser(){
         Scanner scanner = new Scanner(System.in);
