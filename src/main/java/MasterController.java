@@ -1,27 +1,9 @@
-import java.io.Console;
 import java.sql.*;
 
 public class MasterController {
     private Connection c = null;
     private PreparedStatement sqlStatement = null;
 
-
-
-    public void zaloguj(){ //to zostanie wlączone do klasy view wkrótce
-        Console cnsl = null;
-        String login;
-        try {
-            cnsl = System.console();
-            if (cnsl != null) {
-                login = cnsl.readLine("Please provide a username: ");
-                char[] pwd = cnsl.readPassword("Please provide a password: ");
-                String password = String.valueOf(pwd);
-                login(login, password);
-            }
-        } catch(Exception ex) {
-            ex.printStackTrace();
-        }
-    }
     /**
      * login
      * @return  if login is successful return 2-element String array with name as 1-st element
@@ -48,7 +30,7 @@ public class MasterController {
                     System.out.println("\n  Logged in succesfully as: " + login2);
                     String[] whoLoggedIn = {login2, userType};
                     return whoLoggedIn;
-                }
+                } else { System.out.println("  Wrong login or password (or both)."); }
             } else { System.out.println("  Wrong login or password (or both).");}
             recordFromDatabase.close();
             //disconnect();

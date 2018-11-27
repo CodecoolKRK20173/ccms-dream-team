@@ -1,5 +1,7 @@
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class View {
     public void adminMenu(){
@@ -39,19 +41,33 @@ public class View {
 
     public String getNickFromUser(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter nick:\t");
+        System.out.println("Enter nick: ");
         String nick = scanner.nextLine();
         scanner.close();
         return nick;
     }
 
     public String getPasswordFromUser(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter password:\t");
-        String password = scanner.nextLine();
-        scanner.close();
-        return password;
+        Console cnsl = null;
+        try {
+            cnsl = System.console();
+            if (cnsl != null) {
+                //login = cnsl.readLine("Please provide a username: ");
+                char[] pwd = cnsl.readPassword("Enter password: ");
+                String password = String.valueOf(pwd);
+                return password;
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter password:\t");
+//        String password = scanner.nextLine();
+//        scanner.close();
+//
+//    }
 
     public String takeNameFromUser(){
         Scanner scanner = new Scanner(System.in);
@@ -63,7 +79,7 @@ public class View {
 
     public String takeSurnameFromUser(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter surmane:\t");
+        System.out.println("Enter surname:\t");
         String surname = scanner.nextLine();
         scanner.close();
         return surname;
