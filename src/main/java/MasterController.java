@@ -3,6 +3,8 @@ import java.sql.*;
 public class MasterController {
     private Connection c = null;
     private PreparedStatement sqlStatement = null;
+    private int id;
+    private String userType;
 
     /**
      * login
@@ -10,7 +12,7 @@ public class MasterController {
      *          and user_type(admin, student, mentor) as 2-nd element
      *          if login is not successful return null
      */
-    public String[] login(String login, String password) {
+    public void login(String login, String password) {
         try {
             //connect();
             Class.forName("org.sqlite.JDBC");
@@ -21,15 +23,15 @@ public class MasterController {
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
 
             if ( recordFromDatabase.next() ) {
-                //int id = recordFromDatabase.getInt("id");
+
                 String login2 = recordFromDatabase.getString("login");
                 String password2 = recordFromDatabase.getString("password");
-                String userType = recordFromDatabase.getString("userType");
 
                 if (login.equals(login2) && password.equals(password2)) {
                     System.out.println("\n  Logged in succesfully as: " + login2);
-                    String[] whoLoggedIn = {login2, userType};
-                    return whoLoggedIn;
+                    this.id = recordFromDatabase.getInt("id");
+                    this.userType = recordFromDatabase.getString("userType");
+                    createUserController();
                 } else { System.out.println("  Wrong login or password (or both)."); }
             } else { System.out.println("  Wrong login or password (or both).");}
             recordFromDatabase.close();
@@ -44,6 +46,21 @@ public class MasterController {
         return null;
     }
 
+    private void createUserController() {
+        if(this.userType.equals("admin")) {
+            new AdminController(this.id);
+        }
+        else if(this.userType.equals("office")) {
+            new OfficeController(this.id);
+        }
+        else if(this.userType.equals("mentor")) {
+            new MentorController(this.id);
+        }
+        else if(this.userType.equals("student")) {
+            new StudentController(this.id);
+        }
+    }
+
 }
     //    public void disconnect() throws SQLException {
     //        sqlStatement.close();
@@ -54,5 +71,7 @@ public class MasterController {
     //        Class.forName("org.sqlite.JDBC");
     //        c = DriverManager.getConnection("jdbc:sqlite:ccms.db");
     //    }
+
+
 
 
