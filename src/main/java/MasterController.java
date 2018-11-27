@@ -5,13 +5,12 @@ public class MasterController {
     private PreparedStatement sqlStatement = null;
     private int id;
     private String userType;
+    private View view;
 
-    /**
-     * login
-     * @return  if login is successful return 2-element String array with name as 1-st element
-     *          and user_type(admin, student, mentor) as 2-nd element
-     *          if login is not successful return null
-     */
+    public MasterController(View view) {
+        this.view = view;
+    }
+
     public void login(String login, String password) {
         try {
             //connect();
@@ -48,16 +47,16 @@ public class MasterController {
 
     private void createUserController() {
         if(this.userType.equals("admin")) {
-            new AdminController(this.id);
+            new AdminController(this.id, this.view, new DaoAdmin());
         }
         else if(this.userType.equals("office")) {
-            new OfficeController(this.id);
+            new OfficeController(this.id, this.view, new DaoOffice());
         }
         else if(this.userType.equals("mentor")) {
-            new MentorController(this.id);
+            new MentorController(this.id, this.view, new DaoMentor());
         }
         else if(this.userType.equals("student")) {
-            new StudentController(this.id);
+            new StudentController(this.id, this.view, new DaoStudent());
         }
     }
 
