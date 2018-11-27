@@ -1,5 +1,5 @@
-
-
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class View {
     public void adminMenu(){
@@ -35,5 +35,49 @@ public class View {
                 " (1) Submit assignment\n" +
                 " (2) View grades\n" +
                 " (0) Exit CcMS");
+    }
+
+    public String getNickFromUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter nick:\t");
+        String nick = scanner.nextLine();
+        scanner.close();
+        return nick;
+    }
+
+    public String getPasswordFromUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter password:\t");
+        String password = scanner.nextLine();
+        scanner.close();
+        return password;
+    }
+
+    public String takeNameFromUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter name:\t");
+        String name = scanner.nextLine();
+        scanner.close();
+        return name;
+    }
+
+    public String takeSurnameFromUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter surmane:\t");
+        String surname = scanner.nextLine();
+        scanner.close();
+        return surname;
+    }
+
+    public void showStudentsList(ArrayList studentsList){
+        for (int i = 0; i < studentsList.size(); i++ ){
+            System.out.println(studentsList.get(i));
+        }
+    }
+
+    public void showMentorsList (ArrayList mentorsList){
+        for (int i = 0; i < mentorsList.size(); i++) {
+            System.out.println(mentorsList.get(i));
+        }
     }
 }
