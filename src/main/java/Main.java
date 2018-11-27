@@ -10,7 +10,7 @@ public class Main {
         String password = view.getPasswordFromUser();
         String login = view.getNickFromUser();
 
-        MasterController masterController = new MasterController();
+        MasterController masterController = new MasterController(View view);
         masterController.login(login, password);
     }
 }
