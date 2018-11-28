@@ -67,31 +67,31 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter nick: ");
         String nick = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return nick;
     }
 
     public String getPasswordFromUser(){
-        Console cnsl = null;
-        try {
-            cnsl = System.console();
-            if (cnsl != null) {
-                //login = cnsl.readLine("Please provide a username: ");
-                char[] pwd = cnsl.readPassword("Enter password: ");
-                String password = String.valueOf(pwd);
-                return password;
-            }
-        } catch(Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter password:\t");
-//        String password = scanner.nextLine();
-//        scanner.close();
-//
+//        Console cnsl = null;
+//        try {
+//            cnsl = System.console();
+//            if (cnsl != null) {
+//                //login = cnsl.readLine("Please provide a username: ");
+//                char[] pwd = cnsl.readPassword("Enter password: ");
+//                String password = String.valueOf(pwd);
+//                return password;
+//            }
+//        } catch(Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        return null;
 //    }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter password:\t");
+        String password = scanner.nextLine();
+        //scanner.close();
+        return password;
+    }
 
     public String takeNameFromUser(){
         Scanner scanner = new Scanner(System.in);
