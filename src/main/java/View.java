@@ -39,7 +39,7 @@ public class View {
                 " (0) Exit CcMS");
     }
 
-    public String getAssignmenntLink() {
+    public String getAssignmentLink() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
@@ -47,10 +47,10 @@ public class View {
         return link;
     }
 
-    public int getOption(){
+    public  getOption(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
-        int option = scanner.nextInt();
+        String option = scanner.nextInt();
         scanner.close();
         return option;
     }
@@ -121,9 +121,15 @@ public class View {
         }
     }
 
-    public void showGrades (Map<String,Integer> grades){
-        for(Map.Entry<String,Integer> entry : grades.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+    public void showGrades (ArrayList<Assignment> assignments){
+        for(Assignment assi : assignments) {
+            System.out.println(assi.getAssignId() + ", " + assi.getTitle() + ",grade " + assi.getGrade());
+        }
+    }
+
+    public void showAssignmentsIdxs (ArrayList<Assignment> assignments){
+        for(Assignment assi : assignments) {
+            System.out.println(assi.getAssignId() + ": " + assi.getTitle());
         }
     }
 }

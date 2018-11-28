@@ -53,9 +53,9 @@ public class MasterController {
 //        else if(this.userType.equals("mentor")) {
 //            new MentorController(this.id, this.view, new DaoMentor());
 //        }
-//        else if(this.userType.equals("student")) {
-//            new StudentController(this.id, this.view, new DaoStudent());
-//        }
+        else if(this.userType.equals("student")) {
+            new StudentController(this.id, this.view, new DaoStudent());
+        }
     }
 
 }
