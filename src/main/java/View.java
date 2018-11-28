@@ -43,10 +43,10 @@ public class View {
         System.out.println(text);
     }
 
-    public String getOption(){
+    public int getOption(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
-        String option = scanner.nextLine();
+        int option = scanner.nextInt();
         scanner.close();
         return option;
     }
