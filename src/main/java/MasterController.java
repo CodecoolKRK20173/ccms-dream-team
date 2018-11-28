@@ -30,7 +30,7 @@ public class MasterController {
                     System.out.println("\n  Logged in succesfully as: " + login2);
                     this.id = recordFromDatabase.getInt("id");
                     this.userType = recordFromDatabase.getString("userType");
-                    createUserController();
+                    createUserController(id, userType);
                 } else { System.out.println("  Wrong login or password (or both)."); }
             } else { System.out.println("  Wrong login or password (or both).");}
             recordFromDatabase.close();
@@ -42,16 +42,15 @@ public class MasterController {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        //return null;
     }
 
-    private void createUserController() {
-//        if(this.userType.equals("admin")) {
-//            new AdminController(this.id, this.view, new DaoAdmin());
-//        }
-//        else if(this.userType.equals("office")) {
-//            new OfficeController(this.id, this.view, new DaoOffice());
-//        }
+    private void createUserController(int id, String userType) {
+        if(this.userType.equals("admin")) {
+            new AdminController(this.id, this.view, new DaoAdmin());
+        }
+        else if(this.userType.equals("office")) {
+            new OfficeController(this.id, this.view, new DaoOffice());
+        }
 //        else if(this.userType.equals("mentor")) {
 //            new MentorController(this.id, this.view, new DaoMentor());
 //        }
