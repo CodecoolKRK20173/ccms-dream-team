@@ -39,7 +39,27 @@ public class View {
                 " (0) Exit CcMS");
     }
 
-    public String takeLoginFromUser(){
+    public void print(String text){
+        System.out.println(text);
+    }
+
+    public String getOption(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter option number: ");
+        String option = scanner.nextLine();
+        scanner.close();
+        return option;
+    }
+
+    public int getId(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter id: ");
+        int id = scanner.nextInt();
+        scanner.close();
+        return id;
+    }
+
+    public String getLoginFromUser(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter nick:\t");
         String login = scanner.nextLine();

@@ -3,14 +3,15 @@ import java.sql.*;
 public class MasterController {
     private Connection c = null;
     private PreparedStatement sqlStatement = null;
+    private int id;
+    private String userType;
+    private View view;
 
-    /**
-     * login
-     * @return  if login is successful return 2-element String array with name as 1-st element
-     *          and user_type(admin, student, mentor) as 2-nd element
-     *          if login is not successful return null
-     */
-    public String[] login(String login, String password) {
+    public MasterController(View view) {
+        this.view = view;
+    }
+
+    public void login(String login, String password) {
         try {
             //connect();
             Class.forName("org.sqlite.JDBC");
@@ -21,27 +22,42 @@ public class MasterController {
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
 
             if ( recordFromDatabase.next() ) {
-                //int id = recordFromDatabase.getInt("id");
+
                 String login2 = recordFromDatabase.getString("login");
                 String password2 = recordFromDatabase.getString("password");
-                String userType = recordFromDatabase.getString("userType");
 
                 if (login.equals(login2) && password.equals(password2)) {
                     System.out.println("\n  Logged in succesfully as: " + login2);
-                    String[] whoLoggedIn = {login2, userType};
-                    return whoLoggedIn;
+                    this.id = recordFromDatabase.getInt("id");
+                    this.userType = recordFromDatabase.getString("userType");
+                    createUserController();
                 } else { System.out.println("  Wrong login or password (or both)."); }
             } else { System.out.println("  Wrong login or password (or both).");}
             recordFromDatabase.close();
             //disconnect();
             sqlStatement.close();
             c.close();
-            return null;
+            //return null;
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        return null;
+        //return null;
+    }
+
+    private void createUserController() {
+//        if(this.userType.equals("admin")) {
+//            new AdminController(this.id, this.view, new DaoAdmin());
+//        }
+//        else if(this.userType.equals("office")) {
+//            new OfficeController(this.id, this.view, new DaoOffice());
+//        }
+//        else if(this.userType.equals("mentor")) {
+//            new MentorController(this.id, this.view, new DaoMentor());
+//        }
+//        else if(this.userType.equals("student")) {
+//            new StudentController(this.id, this.view, new DaoStudent());
+//        }
     }
 
 }
@@ -54,5 +70,7 @@ public class MasterController {
     //        Class.forName("org.sqlite.JDBC");
     //        c = DriverManager.getConnection("jdbc:sqlite:ccms.db");
     //    }
+
+
 
 
