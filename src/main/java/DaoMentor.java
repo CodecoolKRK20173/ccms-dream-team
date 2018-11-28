@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.sql.*;
 
 public class DaoMentor implements DAOMentor{
@@ -5,6 +7,7 @@ public class DaoMentor implements DAOMentor{
     private Connection c = null;
     private PreparedStatement sqlStatement = null;
     private Statement stmt = null;
+    private View view = null;
 
     @Override
     public Mentor getMentor(int id) {
@@ -88,17 +91,38 @@ public class DaoMentor implements DAOMentor{
     }
 
     @Override
-    public void editStudent(int id) {
+    public void editStudent(int id, String login, String password, String name, String surname) {
+
+        try {
+            //connect();
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("UPDATE Users set login = ?, password = ?, name = ?, surname = ? where ID = ?" );
+            sqlStatement.setString(1, login);
+            sqlStatement.setString(2, password);
+            sqlStatement.setString(3, name);
+            sqlStatement.setString(4, surname);
+            sqlStatement.setInt(5,id);
+
+            sqlStatement.executeUpdate();
+            //disconnect();
+            sqlStatement.close();
+            c.close();
+            System.out.println("  Student " + name + " added to database successfully");
+            //return null;
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+
+    @Override
+    public void addAssigment() throws NotImplementedException {
 
     }
 
     @Override
-    public void addAssigment() {
-
-    }
-
-    @Override
-    public void gradeAssigment() {
+    public void gradeAssigment() throws NotImplementedException {
 
     }
 }
