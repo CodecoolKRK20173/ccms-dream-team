@@ -13,8 +13,11 @@ public class DaoOffice implements DAOOffice {
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
 
             while ( recordFromDatabase.next() ) {
-                String student = recordFromDatabase.getString("login");
-                System.out.println("\n" + student); //tu będzie odwołanie do klasy View aby wyprintowała listę studentów
+                int id = recordFromDatabase.getInt("id");
+                String name = recordFromDatabase.getString("name");
+                String surname = recordFromDatabase.getString("surname");
+
+                System.out.println(""+ id + ". " + name + " " + surname); //tu będzie odwołanie do klasy View aby wyprintowała listę studentów
             }
             recordFromDatabase.close();
             sqlStatement.close();

@@ -51,7 +51,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         int option = scanner.nextInt();
-        scanner.close();
+        //scanner.close();
         return option;
     }
 
