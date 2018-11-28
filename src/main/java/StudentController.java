@@ -20,7 +20,8 @@ public class StudentController {
     public void run() {
         while(true) {
             view.studentMenu();
-            String option = view.getOption();
+            String option = "0"; //to wyrzucić potem
+            //String option = view.getOption();
             if(option.equals("1")) {
                 int assignId = view.getId();
                 String assignmentLink = view.getAssignmenntLink();
