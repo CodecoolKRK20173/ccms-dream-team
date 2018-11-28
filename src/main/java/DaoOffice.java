@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class DaoOffice {
+public class DaoOffice implements DAOOffice {
 
     private Connection c = null;
     private PreparedStatement sqlStatement = null;

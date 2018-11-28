@@ -1,10 +1,10 @@
 public class OfficeController {
     private int id;
     private View view;
-    private DaoOffice daoOffice;
+    private DAOOffice daoOffice;
 
 
-    public OfficeController(int id, View view, DaoOffice daoOffice) {
+    public OfficeController(int id, View view, DAOOffice daoOffice) {
         this.id = id;
         this.view = view;
         this.daoOffice = daoOffice;
