@@ -42,4 +42,29 @@ public class DaoAssignment implements DAOAssignment {
         }
         return assignments;
     }
+
+    public void submitAssignment(Student student, int assignId, String assignmentLink) {
+        int id = student.getId();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("SELECT * FROM Assignments WHERE id LIKE ? AND assignId LIKE ?");
+            sqlStatement.setInt(1, id);
+            sqlStatement.setInt(2, assignId);
+            ResultSet recordFromDatabase = sqlStatement.executeQuery();
+
+            if ( recordFromDatabase.next() ) {
+                String sql = "INSERT INTO Assignments (link) " +
+                        "VALUES (" + assignmentLink + ");";
+                stmt.executeUpdate(sql);
+            } else { System.out.println("Wrong id or assignId");}
+
+            recordFromDatabase.close();
+            sqlStatement.close();
+            c.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
 }
