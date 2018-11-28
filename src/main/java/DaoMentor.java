@@ -2,7 +2,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.*;
 
-public class DaoMentor implements DAOMentor{
+public class DaoMentor implements DAOMentor {
 
     private Connection c = null;
     private PreparedStatement sqlStatement = null;
@@ -15,10 +15,10 @@ public class DaoMentor implements DAOMentor{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             sqlStatement = c.prepareStatement("SELECT * FROM Users WHERE id LIKE ?");
-            sqlStatement.setInt(1,id);
+            sqlStatement.setInt(1, id);
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
 
-            if ( recordFromDatabase.next()){
+            if (recordFromDatabase.next()) {
 
                 int id2 = recordFromDatabase.getInt("id");
                 String login = recordFromDatabase.getString("login");
@@ -34,8 +34,8 @@ public class DaoMentor implements DAOMentor{
             sqlStatement.close();
             return null;
 
-        } catch ( Exception e){
-            System.err.println(e.getClass().getName()+": "+e.getMessage());
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
         return null;
@@ -66,8 +66,8 @@ public class DaoMentor implements DAOMentor{
             c.close();
             System.out.println("  Student " + name + " added to database successfully");
             //return null;
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
     }
@@ -84,8 +84,8 @@ public class DaoMentor implements DAOMentor{
             sqlStatement.close();
             c.close();
             System.out.println("  Student deleted from to database successfully");
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
     }
@@ -97,12 +97,12 @@ public class DaoMentor implements DAOMentor{
             //connect();
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
-            sqlStatement = c.prepareStatement("UPDATE Users set login = ?, password = ?, name = ?, surname = ? where ID = ?" );
+            sqlStatement = c.prepareStatement("UPDATE Users set login = ?, password = ?, name = ?, surname = ? where ID = ?");
             sqlStatement.setString(1, login);
             sqlStatement.setString(2, password);
             sqlStatement.setString(3, name);
             sqlStatement.setString(4, surname);
-            sqlStatement.setInt(5,id);
+            sqlStatement.setInt(5, id);
 
             sqlStatement.executeUpdate();
             //disconnect();
@@ -110,8 +110,8 @@ public class DaoMentor implements DAOMentor{
             c.close();
             System.out.println("  Student " + name + " added to database successfully");
             //return null;
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
     }
