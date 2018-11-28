@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class MentorController{
 
     private View view;
@@ -30,7 +32,9 @@ public class MentorController{
 
     }
 
-    //    public void addAssigment(){} - to implement
-    //    public void gradeAssigment(){}
-    //    public void checkAttendence(){}
+    public void addAssigment()throws NotImplementedException{};
+
+    public void gradeAssigment()throws NotImplementedException{};
+
+    public void checkAttendence()throws NotImplementedException{};
 }
