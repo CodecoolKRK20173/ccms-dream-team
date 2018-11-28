@@ -5,18 +5,4 @@ public class Mentor extends User {
         super(id, login, password, userType, name, surname);
     }
 
-    // public String toString() {
-    //     StringBuilder mentorBuilder = new StringBuilder();
-    //     mentorBuilder.append("id: ");
-    //     mentorBuilder.append(id + " ");
-    //     mentorBuilder.append("login: ");
-    //     mentorBuilder.append(login + " ");
-    //     mentorBuilder.append("user type: ");
-    //     mentorBuilder.append(userType + "\n");
-    //     mentorBuilder.append("name: ");
-    //     mentorBuilder.append(name + " ");
-    //     mentorBuilder.append("surname: ");
-    //     mentorBuilder.append(surname);
-    //     return mentorBuilder.toString();
-    // }
 }
