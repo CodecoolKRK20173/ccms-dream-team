@@ -15,18 +15,18 @@ public class AdminController {
         boolean isRunning = true;
         while (isRunning) {
             view.adminMenu();
-            int opt = view.getOption();
+            String opt = view.getOptionForMenu();
 
             switch (opt) {
-                case 1:
+                case "1":
                     view.clearScreen();
                     view.showListOfMentors(daoAdmin.getMentors());
                     break;
-                case 2:
+                case "2":
                     view.clearScreen();
                     view.showListOfStudents(daoAdmin.getStudents());
                     break;
-                case 3:
+                case "3":
                     //String mentorLogin = view.takeLoginFromUser();
                     String mentorName = view.takeNameFromUser();
                     String mentorSurname = view.takeSurnameFromUser();
@@ -34,17 +34,20 @@ public class AdminController {
                     //String uType = view.takeUserType();
                     //admin.addMentor(mentorLogin, mentorName, mentorSurname, mentorPasword, uType);
                     break;
-                case 4:
+                case "4":
                     //int userId = view.getIdFromUser();
                     //admin.removeMentor(view.getIdFromUser());
                     break;
-                case 5:
+                case "5":
                     //int userId = view.getIdFromUser();
                     //admin.editMentorData(view.getIdFromUser());
                     break;
-                case 0:
+                case "0":
                     isRunning = false;
                     break;
+                default:
+                    view.clearScreen();
+                    System.out.println("  Invalid option input.\n");
             }
         }
     }

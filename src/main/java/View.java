@@ -169,4 +169,12 @@ public class View {
         }
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
     }
+
+    public String getOptionForMenu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter option number: ");
+        String option = scanner.nextLine();
+        //scanner.close();
+        return option;
+    }
 }
