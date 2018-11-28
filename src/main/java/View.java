@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.Map;
@@ -127,6 +129,24 @@ public class View {
         }
     }
 
+    public void showListOfStudents(ArrayList<Student> students) {
+
+        String leftAlignFormat = "|  %-3d | %-12s |  %-12s  |  %-12s  |  %-10s  |%n";
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+        System.out.format("|  ID  |  Login       |  Name          |  Surname       |   User type  |%n");
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+
+        for (int i = 0; i < students.size() ; i++) {
+            int id = students.get(i).getId();
+            String login = students.get(i).getLogin();
+            String name = students.get(i).getName();
+            String surname = students.get(i).getSurname();
+            String userType = students.get(i).getUserType();
+            System.out.format(leftAlignFormat, id, login, userType, name, surname);
+        }
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+    }
+    
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
