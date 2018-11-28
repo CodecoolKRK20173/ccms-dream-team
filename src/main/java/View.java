@@ -126,4 +126,24 @@ public class View {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
+
+    public void showListOfStudents (String name, String surname, String userType) {
+        int i = 0;
+//        System.out.println("id\t\tname\t\tamount");
+//        while( iterator.hasNext()) {
+//            Product product = (Product)iterator.next();
+//            System.out.println(++i + "\t\t" + product.getName() + "\t\t" + order.getBasket().getAmount(product));
+//        }
+//        String leftAlignFormat = "|  %-4d | %-20s |  %-6d  |%n";
+//
+//        System.out.format("+-------+----------------------+----------+%n");
+//        System.out.format("|  ID   |  Name                |  Amount  |%n");
+//        System.out.format("+-------+----------------------+----------+%n");
+
+//        while( iterator.hasNext()) {
+//            Product product = (Product)iterator.next();
+//            System.out.format(leftAlignFormat, ++i, name, surname);
+//        }
+//        System.out.format("+-------+----------------------+----------+%n");
+    }
 }
