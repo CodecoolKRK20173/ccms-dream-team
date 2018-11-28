@@ -1,7 +1,7 @@
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
-
 
 public class View {
     public void adminMenu(){
@@ -39,8 +39,12 @@ public class View {
                 " (0) Exit CcMS");
     }
 
-    public void print(String text){
-        System.out.println(text);
+    public String getAssignmenntLink() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Put the assignment link: ");
+        String link = scanner.nextLine();
+        scanner.close();
+        return link;
     }
 
     public String getOption(){
@@ -54,9 +58,9 @@ public class View {
     public int getId(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
-        int id = scanner.nextLine();
+        String id = scanner.nextLine();
         scanner.close();
-        return id;
+        return Integer.parseInt(id);
     }
 
     public String getNickFromUser(){
@@ -114,6 +118,12 @@ public class View {
     public void showMentorsList (ArrayList mentorsList){
         for (int i = 0; i <= mentorsList.size(); i++) {
             System.out.println(mentorsList.get(i));
+        }
+    }
+
+    public void showGrades (Map<String,Integer> grades){
+        for(Map.Entry<String,Integer> entry : grades.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
 }
