@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface DAOOffice {
-    public void getStudents();
+    public ArrayList<Student> getStudents();
 }

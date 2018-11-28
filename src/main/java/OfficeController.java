@@ -19,8 +19,7 @@ public class OfficeController {
             int option = view.getOption();
             switch (option) {
                 case 1:
-                    System.out.println("list students here");
-                    daoOffice.getStudents();
+                    view.showListOfStudents(daoOffice.getStudents());
                     break;
                 case 0:
                     isRunning = false;

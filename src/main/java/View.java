@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.Map;
@@ -127,23 +129,21 @@ public class View {
         }
     }
 
-    public void showListOfStudents (String name, String surname, String userType) {
-        int i = 0;
-//        System.out.println("id\t\tname\t\tamount");
-//        while( iterator.hasNext()) {
-//            Product product = (Product)iterator.next();
-//            System.out.println(++i + "\t\t" + product.getName() + "\t\t" + order.getBasket().getAmount(product));
-//        }
-//        String leftAlignFormat = "|  %-4d | %-20s |  %-6d  |%n";
-//
-//        System.out.format("+-------+----------------------+----------+%n");
-//        System.out.format("|  ID   |  Name                |  Amount  |%n");
-//        System.out.format("+-------+----------------------+----------+%n");
+    public void showListOfStudents(ArrayList<Student> students) {
 
-//        while( iterator.hasNext()) {
-//            Product product = (Product)iterator.next();
-//            System.out.format(leftAlignFormat, ++i, name, surname);
-//        }
-//        System.out.format("+-------+----------------------+----------+%n");
+        String leftAlignFormat = "|  %-3d | %-12s |  %-12s  |  %-12s  |  %-10s  |%n";
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+        System.out.format("|  ID  |  Login       |  Name          |  Surname       |   User type  |%n");
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+
+        for (int i = 0; i < students.size() ; i++) {
+            int id = students.get(i).getId();
+            String login = students.get(i).getLogin();
+            String name = students.get(i).getName();
+            String surname = students.get(i).getSurname();
+            String userType = students.get(i).getUserType();
+            System.out.format(leftAlignFormat, id, login, userType, name, surname);
+        }
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
     }
 }
