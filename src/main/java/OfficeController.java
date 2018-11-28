@@ -19,6 +19,7 @@ public class OfficeController {
             int option = view.getOption();
             switch (option) {
                 case 1:
+                    view.clearScreen();
                     view.showListOfStudents(daoOffice.getStudents());
                     break;
                 case 0:

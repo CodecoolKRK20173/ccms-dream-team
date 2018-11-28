@@ -129,7 +129,7 @@ public class View {
         }
     }
 
-    public void showListOfStudents(ArrayList<Student> students) {
+    public static void showListOfStudents(ArrayList<Student> students) {
 
         String leftAlignFormat = "|  %-3d | %-12s |  %-12s  |  %-12s  |  %-10s  |%n";
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
@@ -146,9 +146,27 @@ public class View {
         }
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
     }
-    
+
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public static void showListOfMentors(ArrayList<Mentor> mentors) {
+
+        String leftAlignFormat = "|  %-3d | %-12s |  %-12s  |  %-12s  |  %-10s  |%n";
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+        System.out.format("|  ID  |  Login       |  Name          |  Surname       |   User type  |%n");
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+
+        for (int i = 0; i < mentors.size() ; i++) {
+            int id = mentors.get(i).getId();
+            String login = mentors.get(i).getLogin();
+            String name = mentors.get(i).getName();
+            String surname = mentors.get(i).getSurname();
+            String userType = mentors.get(i).getUserType();
+            System.out.format(leftAlignFormat, id, login, userType, name, surname);
+        }
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
     }
 }
