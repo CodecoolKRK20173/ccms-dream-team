@@ -8,9 +8,9 @@ public class Admin extends User {
         //DAO.addMentor(login, name, surname, pasword, userType);
     }
 
-    public void removeMentor(int id){
-        //DAO.removeMentor(id);
-    }
+//    public void removeMentor(int id){
+//        //DAO.removeMentor(id);
+//    }
 
 //    public void editMentorData(int id){
 //        DaoAdmin.editMentor(id);

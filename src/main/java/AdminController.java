@@ -38,12 +38,12 @@ public class AdminController {
                     daoAdmin.addMentor(mentor);
                     break;
                 case "4":
-                    //int userId = view.getIdFromUser();
-                    //admin.removeMentor(view.getIdFromUser());
+                    int userIdDel = view.getId();
+                    daoAdmin.removeMentor(userIdDel);
                     break;
                 case "5":
-                    int userId = view.getId();
-                    daoAdmin.editMentor(userId);
+                    int userIdEdit = view.getId();
+                    daoAdmin.editMentor(userIdEdit);
                     break;
                 case "0":
                     isRunning = false;
