@@ -6,7 +6,6 @@ import java.util.Map;
 public class DaoAssignment implements DAOAssignment {
     private Connection c = null;
     private PreparedStatement sqlStatement = null;
-    private Statement stmt = null;
 
     public DaoAssignment() {
     }
@@ -41,5 +40,25 @@ public class DaoAssignment implements DAOAssignment {
             System.exit(0);
         }
         return assignments;
+    }
+
+    public void submitAssignment(Student student, int assignId, String assignmentLink) {
+        int id = student.getId();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("UPDATE Assignments SET link = ? WHERE assignId = ? AND studentId = ?");
+            sqlStatement.setString(1, assignmentLink);
+            sqlStatement.setInt(2, assignId);
+            sqlStatement.setInt(3, id);
+
+            sqlStatement.executeUpdate();
+            System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+            sqlStatement.close();
+            c.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
     }
 }

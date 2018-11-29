@@ -22,7 +22,7 @@ public class StudentController {
     public void run() {
         while(true) {
             view.studentMenu();
-            String option = "1";
+            String option = view.getOption();
             if(option.equals("1")) {
                 ArrayList<Assignment> assignments = daoAssignment.getAssignments(this.loggedStudent);
                 if(assignments == null) {
