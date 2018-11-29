@@ -6,17 +6,63 @@ public class MentorController {
     private View view;
     private DAOMentor dao;
 
-    public MentorController(int id, View view, DAOMentor dao) {
+    public MentorController(int id, View view, DAOMentor dao){
+        this.dao = dao;
         this.loggedmentor = getMentor(id);
         this.view = view;
-        this.dao = dao;
+        run();
     }
 
     public View getView() {
         return view;
     }
 
-    public Mentor getMentor(int id) {
+    public void run(){
+        boolean isActive = true;
+        while (isActive){
+            view.mentorMenu();
+            String option = view.getOptionForMenu();
+
+            switch (option){
+                case "1":
+                    view.clearScreen();
+                    View.showListOfStudents(dao.getStudents());
+                    break;
+                case "2":
+                    view.clearScreen();
+                    System.out.println("Work in progress...");
+                    System.out.println();
+                    break;
+                case "3":
+                    view.clearScreen();
+                    System.out.println("Work in progress...");
+                    System.out.println();
+                    break;
+                case "4":
+                    view.clearScreen();
+                    System.out.println("Work in progress...");
+                    System.out.println();
+                    break;
+                case "5":
+                    view.clearScreen();
+                    addStudent();
+                case "6":
+                    view.clearScreen();
+                    removeStudent();
+                case "7":
+                    view.clearScreen();
+                    editStudentData();
+                case "0":
+                    isActive = false;
+                    break;
+                default:
+                    view.clearScreen();
+                    System.out.println("  Invalid option input.\n");
+            }
+        }
+    }
+
+    public Mentor getMentor(int id){
         return dao.getMentor(id);
     }
 
