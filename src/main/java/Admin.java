@@ -12,7 +12,7 @@ public class Admin extends User {
         //DAO.removeMentor(id);
     }
 
-    public void editMentorData(int id){
-        //DAO.editMentorData(id);
-    }
+//    public void editMentorData(int id){
+//        DaoAdmin.editMentor(id);
+//    }
 }

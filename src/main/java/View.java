@@ -11,8 +11,8 @@ public class View {
                 " (1) List mentors\n " +
                 " (2) List students\n " +
                 " (3) Add mentor\n " +
-                " (4) Remove mentor\n" +
-                " (5) Edit mentor\n" +
+                " (4) Remove mentor\n " +
+                " (5) Edit mentor\n " +
                 " (0) Exit CcMS");
     }
 
@@ -45,7 +45,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return link;
     }
 
@@ -61,13 +61,13 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         String id = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return Integer.parseInt(id);
     }
 
     public String getNickFromUser(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter nick: ");
+        System.out.println("Enter user login: ");
         String nick = scanner.nextLine();
         //scanner.close();
         return nick;
@@ -99,7 +99,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name:\t");
         String name = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return name;
     }
 
@@ -107,7 +107,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter surname:\t");
         String surname = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return surname;
     }
 
