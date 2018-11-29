@@ -109,17 +109,6 @@ public class View {
         return surname;
     }
 
-    public void showStudentsList(ArrayList studentsList){
-        for (int i = 0; i <= studentsList.size(); i++ ){
-            System.out.println(studentsList.get(i));
-        }
-    }
-
-    public void showMentorsList (ArrayList mentorsList){
-        for (int i = 0; i <= mentorsList.size(); i++) {
-            System.out.println(mentorsList.get(i));
-        }
-    }
 
     public void showGrades (Map<String,Integer> grades){
         for(Map.Entry<String,Integer> entry : grades.entrySet()) {

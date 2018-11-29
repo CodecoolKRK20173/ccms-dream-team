@@ -1,6 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.Scanner;
 
 public class DaoAdmin implements DAOAdmin {
     private Connection c = null;
@@ -51,6 +50,28 @@ public class DaoAdmin implements DAOAdmin {
             System.out.println("  Mentor deleted from to database successfully");
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+
+    public void editMentor(int id){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What would you like to edit(Name, Surname, Login, Password, Type):\n");
+        String inputColumn = scanner.nextLine();
+
+        Connection c = null;
+        Statement stmt = null;
+        try{
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:test.db");
+            stmt = c.createStatement();
+            if (inputColumn.equals("Name")){
+                System.out.println("Enter new name:\t");
+                String newName = scanner.nextLine();
+                ResultSet rs = stmt.executeQuery("UPDATE Users SET NAME = " + newName + "WHERE ID = " + id + ");");
+            }
+        } catch (Exception e){
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
     }
