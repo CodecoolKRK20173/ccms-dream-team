@@ -111,12 +111,14 @@ public class View {
         return surname;
     }
 
+    //deadcode to delete
     public void showStudentsList(ArrayList studentsList){
         for (int i = 0; i <= studentsList.size(); i++ ){
             System.out.println(studentsList.get(i));
         }
     }
 
+    //deadcode to delete
     public void showMentorsList (ArrayList mentorsList){
         for (int i = 0; i <= mentorsList.size(); i++) {
             System.out.println(mentorsList.get(i));
@@ -178,4 +180,8 @@ public class View {
         //scanner.close();
         return option;
     }
+
+//    public void showUserType(User user){
+//        System.out.println(user.getUserType());
+//    }
 }

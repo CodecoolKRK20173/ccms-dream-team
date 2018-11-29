@@ -31,14 +31,18 @@ public class DaoMentor implements DAOMentor {
             } else {
                 System.out.println("Wrong id");
             }
-            recordFromDatabase.close();
-            sqlStatement.close();
             return null;
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        } finally {
+        try {
+            sqlStatement.close();
+            c.close();
+        } catch (Exception e){
         }
+    }
         return null;
     }
 
@@ -61,13 +65,16 @@ public class DaoMentor implements DAOMentor {
                 students.add(new Student(id, login, password, name, surname, userType));
             }
 
-            recordFromDatabase.close();
-            sqlStatement.close();
-            c.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        } finally {
+        try {
+            sqlStatement.close();
+            c.close();
+        } catch (Exception e){
         }
+    }
         return students;
     }
 
@@ -91,14 +98,18 @@ public class DaoMentor implements DAOMentor {
             sqlStatement.setString(5, userType);
 
             sqlStatement.executeUpdate();
-            //disconnect();
-            sqlStatement.close();
-            c.close();
             System.out.println("  Student " + name + " added to database successfully");
             //return null;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+            //disconnect();
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e){
+            }
         }
     }
 
@@ -111,13 +122,17 @@ public class DaoMentor implements DAOMentor {
             sqlStatement = c.prepareStatement("DELETE FROM Users WHERE id LIKE ?");
             sqlStatement.setInt(1, id);
             sqlStatement.executeUpdate();
-            sqlStatement.close();
-            c.close();
             System.out.println("  Student deleted from to database successfully");
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        } finally {
+        try {
+            sqlStatement.close();
+            c.close();
+        } catch (Exception e){
         }
+    }
     }
 
     @Override
@@ -135,14 +150,18 @@ public class DaoMentor implements DAOMentor {
             sqlStatement.setInt(5, id);
 
             sqlStatement.executeUpdate();
-            //disconnect();
-            sqlStatement.close();
-            c.close();
             System.out.println("  Student " + name + " added to database successfully");
             //return null;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+            //disconnect();
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e){
+            }
         }
     }
 
