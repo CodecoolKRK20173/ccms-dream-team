@@ -85,27 +85,27 @@ public class DaoAdmin implements DAOAdmin {
             if (inputColumn.equals("Name")) {
                 System.out.println("Enter new name:\t");
                 String newName = scanner.nextLine();
-                ResultSet rs = stmt.executeQuery( "UPDATE Users SET NAME = '" + newName +"' WHERE ID = " + id + ";");
+                stmt.executeUpdate( "UPDATE Users SET NAME = '" + newName +"' WHERE ID = " + id + ";");
             }
             if (inputColumn.equals("Surname")){
                 System.out.println("Enter new surname:\t");
                 String newSurname = scanner.nextLine();
-                ResultSet rs = stmt.executeQuery("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id +";" );
+                stmt.executeUpdate("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id +";" );
             }
             if (inputColumn.equals("Login")){
                 System.out.println("Enter new login:\t");
                 String newLogin = scanner.nextLine();
-                ResultSet rs = stmt.executeQuery("UPDATE Users set LOGIN = '" + newLogin + "' WHERE ID = " + id + ";");
+                stmt.executeUpdate("UPDATE Users set LOGIN = '" + newLogin + "' WHERE ID = " + id + ";");
             }
             if (inputColumn.equals("Password")){
                 System.out.println("Enter new password:\t");
                 String newLogin = scanner.nextLine();
-                ResultSet rs = stmt.executeQuery("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
+                stmt.executeUpdate("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
             }
             if (inputColumn.equals("Type")){
                 System.out.println("Enter new type:\t");
                 String newLogin = scanner.nextLine();
-                ResultSet rs = stmt.executeQuery("UPDATE Users set TYPE = '" + newLogin + "' WHERE ID = " + id + ";");
+                stmt.executeUpdate("UPDATE Users set TYPE = '" + newLogin + "' WHERE ID = " + id + ";");
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
