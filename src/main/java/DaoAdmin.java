@@ -16,7 +16,6 @@ public class DaoAdmin implements DAOAdmin {
         String surname = user.getSurname();
 
         try {
-            //connect();
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             sqlStatement = c.prepareStatement("INSERT INTO Users (login, password, name, surname, userType) VALUES (?, ?, ?, ?, ?)");
@@ -27,11 +26,9 @@ public class DaoAdmin implements DAOAdmin {
             sqlStatement.setString(5, userType);
 
             sqlStatement.executeUpdate();
-            //disconnect();
+            System.out.println("  Mentor " + name + " added to database successfully");
             sqlStatement.close();
             c.close();
-            System.out.println("  Mentor " + name + " added to database successfully");
-            //return null;
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);

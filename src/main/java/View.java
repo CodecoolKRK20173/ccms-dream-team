@@ -99,7 +99,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name:\t");
         String name = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return name;
     }
 
@@ -107,7 +107,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter surname:\t");
         String surname = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return surname;
     }
 
