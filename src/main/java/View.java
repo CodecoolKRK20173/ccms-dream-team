@@ -133,13 +133,13 @@ public class View {
 
     public void showGrades (ArrayList<Assignment> assignments){
         for(Assignment assi : assignments) {
-            System.out.println(assi.getAssignId() + ", " + assi.getTitle() + ",grade " + assi.getGrade());
+            System.out.println(assi.getAssignId() + " - " + assi.getTitle() + " - grade: " + assi.getGrade());
         }
     }
 
     public void showAssignmentsIdxs (ArrayList<Assignment> assignments){
         for(Assignment assi : assignments) {
-            System.out.println(assi.getAssignId() + ": " + assi.getTitle());
+            System.out.println(assi.getAssignId() + " - " + assi.getTitle());
         }
     }
 
