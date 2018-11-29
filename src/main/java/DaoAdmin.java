@@ -1,3 +1,5 @@
+import java.sql.*;
+import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -32,6 +34,13 @@ public class DaoAdmin implements DAOAdmin {
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e) {
+
+            }
         }
     }
 
@@ -40,17 +49,71 @@ public class DaoAdmin implements DAOAdmin {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
-            sqlStatement = c.prepareStatement("DELETE FROM Users WHERE id LIKE ?");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("DELETE FROM Users WHERE id = ?");
             sqlStatement.setInt(1, id);
             sqlStatement.executeUpdate();
-            sqlStatement.close();
-            c.close();
             System.out.println("  Mentor deleted from to database successfully");
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+
+    public static void editMentor(int id) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What would you like to edit(Name, Surname, Login, Password, Type):\n");
+        String inputColumn = scanner.nextLine();
+
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            stmt = c.createStatement();
+            if (inputColumn.equals("Name")) {
+                System.out.println("Enter new name:\t");
+                String newName = scanner.nextLine();
+                stmt.executeUpdate( "UPDATE Users SET NAME = '" + newName +"' WHERE ID = " + id + ";");
+            }
+            if (inputColumn.equals("Surname")){
+                System.out.println("Enter new surname:\t");
+                String newSurname = scanner.nextLine();
+                stmt.executeUpdate("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id +";" );
+            }
+            if (inputColumn.equals("Login")){
+                System.out.println("Enter new login:\t");
+                String newLogin = scanner.nextLine();
+                stmt.executeUpdate("UPDATE Users set LOGIN = '" + newLogin + "' WHERE ID = " + id + ";");
+            }
+            if (inputColumn.equals("Password")){
+                System.out.println("Enter new password:\t");
+                String newLogin = scanner.nextLine();
+                stmt.executeUpdate("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
+            }
+            if (inputColumn.equals("Type")){
+                System.out.println("Enter new type:\t");
+                String newLogin = scanner.nextLine();
+                stmt.executeUpdate("UPDATE Users set TYPE = '" + newLogin + "' WHERE ID = " + id + ";");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        } finally {
+            try{
+                stmt.close();
+                c.close();
+            } catch (Exception e){
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            }
         }
     }
 
@@ -79,8 +142,16 @@ public class DaoAdmin implements DAOAdmin {
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e) {
+
+            }
         }
-        return mentors;
+
+            return mentors;
     }
 
 
@@ -108,7 +179,15 @@ public class DaoAdmin implements DAOAdmin {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e) {
+
+            }
+
+            return students;
         }
-        return students;
     }
 }
