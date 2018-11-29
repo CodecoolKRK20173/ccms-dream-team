@@ -8,6 +8,7 @@ public class Main {
     public static void run() {
         View view = new View();
         while (true) { //lipne to jest mentorzy od razu się skrzywią xD
+            System.out.println("Wlecome into CcMS\n");
             String login = view.getNickFromUser();
             String password = view.getPasswordFromUser();
 

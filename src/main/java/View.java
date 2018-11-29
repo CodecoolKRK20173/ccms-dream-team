@@ -11,8 +11,8 @@ public class View {
                 " (1) List mentors\n " +
                 " (2) List students\n " +
                 " (3) Add mentor\n " +
-                " (4) Remove mentor\n" +
-                " (5) Edit mentor\n" +
+                " (4) Remove mentor\n " +
+                " (5) Edit mentor\n " +
                 " (0) Exit CcMS");
     }
 
@@ -45,7 +45,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return link;
     }
 
@@ -61,7 +61,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         String id = scanner.nextLine();
-//        scanner.close();
+        //scanner.close();
         return Integer.parseInt(id);
     }
 
@@ -75,7 +75,7 @@ public class View {
 
     public String getNickFromUser(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter nick: ");
+        System.out.println("Enter user login: ");
         String nick = scanner.nextLine();
         //scanner.close();
         return nick;
@@ -119,17 +119,6 @@ public class View {
         return surname;
     }
 
-    public void showStudentsList(ArrayList studentsList){
-        for (int i = 0; i <= studentsList.size(); i++ ){
-            System.out.println(studentsList.get(i));
-        }
-    }
-
-    public void showMentorsList (ArrayList mentorsList){
-        for (int i = 0; i <= mentorsList.size(); i++) {
-            System.out.println(mentorsList.get(i));
-        }
-    }
 
     public void showGrades (ArrayList<Assignment> assignments){
         for(Assignment assi : assignments) {
