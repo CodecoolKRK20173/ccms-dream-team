@@ -8,7 +8,6 @@ public class OfficeController {
         this.id = id;
         this.view = view;
         this.daoOffice = daoOffice;
-        daoOffice.getStudents(); //usunąć przed pushem
         run(); // wiem że w konstruktorze, potem wyrzucę gdzie indziej heheszki
     }
 
@@ -17,18 +16,19 @@ public class OfficeController {
         boolean isRunning = true;
         while (isRunning) {
             view.officeMenu();
-            //int option = view.getOption();
-            int option = 1;
+            String option = view.getOptionForMenu();
             switch (option) {
-                case 1:
-                    System.out.println("list students here");
-                    isRunning = false; //to usunac potem heheszki
+                case "1":
+                    view.clearScreen();
+                    view.showListOfStudents(daoOffice.getStudents());
                     break;
-                case 0:
+                case "0":
                     isRunning = false;
                     break;
                 default:
-                    System.out.println("  Invalid option input.");
+                    view.clearScreen();
+                    System.out.println("  Invalid option input.\n");
+                    break;
             }
         }
     }

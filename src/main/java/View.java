@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.Map;
@@ -51,7 +53,7 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         int option = scanner.nextInt();
-        scanner.close();
+        //scanner.close();
         return option;
     }
 
@@ -114,5 +116,54 @@ public class View {
         for(Map.Entry<String,Integer> entry : grades.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
+    }
+
+    public static void showListOfStudents(ArrayList<Student> students) {
+
+        String leftAlignFormat = "|  %-3d | %-12s |  %-12s  |  %-12s  |  %-10s  |%n";
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+        System.out.format("|  ID  |  Login       |  Name          |  Surname       |   User type  |%n");
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+
+        for (int i = 0; i < students.size() ; i++) {
+            int id = students.get(i).getId();
+            String login = students.get(i).getLogin();
+            String name = students.get(i).getName();
+            String surname = students.get(i).getSurname();
+            String userType = students.get(i).getUserType();
+            System.out.format(leftAlignFormat, id, login, userType, name, surname);
+        }
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static void showListOfMentors(ArrayList<Mentor> mentors) {
+
+        String leftAlignFormat = "|  %-3d | %-12s |  %-12s  |  %-12s  |  %-10s  |%n";
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+        System.out.format("|  ID  |  Login       |  Name          |  Surname       |   User type  |%n");
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+
+        for (int i = 0; i < mentors.size() ; i++) {
+            int id = mentors.get(i).getId();
+            String login = mentors.get(i).getLogin();
+            String name = mentors.get(i).getName();
+            String surname = mentors.get(i).getSurname();
+            String userType = mentors.get(i).getUserType();
+            System.out.format(leftAlignFormat, id, login, userType, name, surname);
+        }
+        System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+    }
+
+    public String getOptionForMenu(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter option number: ");
+        String option = scanner.nextLine();
+        //scanner.close();
+        return option;
     }
 }
