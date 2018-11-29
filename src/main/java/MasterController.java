@@ -58,6 +58,8 @@ public class MasterController {
                 c.close();
                 new AdminController(this.id, this.view, new DaoAdmin());
             } else if (this.userType.equals("office")) {
+                sqlStatement.close();
+                c.close();
                 new OfficeController(this.id, this.view, new DaoOffice());
             }
        else if(this.userType.equals("mentor")) {
