@@ -30,14 +30,16 @@ public class DaoAssignment implements DAOAssignment {
             } else {
                 return null;
             }
-            recordFromDatabase.close();
-            sqlStatement.close();
-            c.close();
-            return assignments;
-
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e){
+
+            }
         }
         return assignments;
     }
@@ -51,14 +53,17 @@ public class DaoAssignment implements DAOAssignment {
             sqlStatement.setString(1, assignmentLink);
             sqlStatement.setInt(2, assignId);
             sqlStatement.setInt(3, id);
-
             sqlStatement.executeUpdate();
-            System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
-            sqlStatement.close();
-            c.close();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e){
+
+            }
         }
     }
 }

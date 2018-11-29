@@ -34,7 +34,7 @@ public class StudentController {
                     int assignId = view.getId();
                     String assignmentLink = view.getAssignmentLink();
                     this.daoAssignment.submitAssignment(this.loggedStudent, assignId, assignmentLink);
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     System.out.println("Wrong assignmnent id");
                 }
             }

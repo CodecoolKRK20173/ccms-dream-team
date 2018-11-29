@@ -17,7 +17,6 @@ public class DaoStudent implements DAOStudent{
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
 
             if ( recordFromDatabase.next() ) {
-
                 int id2 = recordFromDatabase.getInt("id");
                 String login = recordFromDatabase.getString("login");
                 String password = recordFromDatabase.getString("password");
@@ -26,16 +25,21 @@ public class DaoStudent implements DAOStudent{
                 String surname = recordFromDatabase.getString("surname");
                 return new Student(id2, login, password, userType, name, surname);
 
-                } else { System.out.println("Wrong id");}
-
-            recordFromDatabase.close();
-            sqlStatement.close();
-            c.close();
+                } else {
+                System.out.println("Wrong id");
+            }
             return null;
 
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e){
+
+            }
         }
         return null;
     }
