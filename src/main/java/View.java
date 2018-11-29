@@ -34,6 +34,10 @@ public class View {
                 " (0) Exit CcMS");
     }
 
+    public  void printEmptyLine() {
+        System.out.println();
+    }
+
     public void studentMenu(){
         System.out.println("What would you like to do:\n" +
                 " (1) Submit assignment\n" +
