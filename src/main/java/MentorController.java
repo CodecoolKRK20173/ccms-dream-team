@@ -1,15 +1,19 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
+
 public class MentorController {
 
     private Mentor loggedmentor;
     private View view;
     private DAOMentor dao;
+    private DAOAssignment daoAssignment;
 
-    public MentorController(int id, View view, DAOMentor dao){
+    public MentorController(int id, View view, DAOMentor dao, DAOAssignment daoAssignment){
         this.dao = dao;
         this.loggedmentor = getMentor(id);
         this.view = view;
+        this.daoAssignment = daoAssignment;
         run();
     }
 
@@ -30,6 +34,7 @@ public class MentorController {
                     break;
                 case "2":
                     view.clearScreen();
+                    addAssignment();
                     System.out.println("Work in progress...");
                     System.out.println();
                     break;
@@ -109,6 +114,16 @@ public class MentorController {
         mentorBuilder.append("surname: ");
         mentorBuilder.append(loggedmentor.getSurname());
         return mentorBuilder.toString();
+    }
+
+    public void  addAssignment() {
+        ArrayList<Student> students = dao.getStudents();
+        String title = view.getAssignmentTitle();
+        for(Student student : students) {
+            Assignment assignment = new Assignment(student.getId(), title);
+            daoAssignment.addAssignment(assignment);
+        }
+
     }
 
     public void addAssigment() throws NotImplementedException {

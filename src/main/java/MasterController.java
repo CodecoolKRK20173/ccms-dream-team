@@ -65,14 +65,13 @@ public class MasterController {
             else if(this.userType.equals("mentor")) {
                 sqlStatement.close();
                 c.close();
-                new MentorController(this.id, this.view, new DaoMentor());
+                new MentorController(this.id, this.view, new DaoMentor(), new DaoAssignment());
             }
-
-        else if(this.userType.equals("student")) {
-                sqlStatement.close();
-                c.close();
-            new StudentController(this.id, this.view, new DaoStudent(), new DaoAssignment());
-        }
+            else if(this.userType.equals("student")) {
+                    sqlStatement.close();
+                    c.close();
+                new StudentController(this.id, this.view, new DaoStudent(), new DaoAssignment());
+            }
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

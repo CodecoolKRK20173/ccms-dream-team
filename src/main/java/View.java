@@ -57,6 +57,14 @@ public class View {
         return option;
     }
 
+    public String getAssignmentTitle(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter title: ");
+        String option = scanner.nextLine();
+        //scanner.close();
+        return option;
+    }
+
     public int getId(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
