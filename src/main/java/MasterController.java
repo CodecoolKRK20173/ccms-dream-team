@@ -62,9 +62,11 @@ public class MasterController {
                 c.close();
                 new OfficeController(this.id, this.view, new DaoOffice());
             }
-       else if(this.userType.equals("mentor")) {
-           new MentorController(this.id, this.view, new DaoMentor());
-       }
+            else if(this.userType.equals("mentor")) {
+                sqlStatement.close();
+                c.close();
+                new MentorController(this.id, this.view, new DaoMentor());
+            }
 
         else if(this.userType.equals("student")) {
                 sqlStatement.close();

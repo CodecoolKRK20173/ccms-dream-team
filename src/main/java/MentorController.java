@@ -46,12 +46,15 @@ public class MentorController {
                 case "5":
                     view.clearScreen();
                     addStudent();
+                    break;
                 case "6":
                     view.clearScreen();
                     removeStudent();
+                    break;
                 case "7":
                     view.clearScreen();
                     editStudentData();
+                    break;
                 case "0":
                     isActive = false;
                     break;
@@ -68,13 +71,14 @@ public class MentorController {
 
     public void addStudent() {
 
-        int id = view.getId();
+        int id = 0;
         String login = view.getNickFromUser();
         String password = view.getPasswordFromUser();
+        String userType = "student";
         String name = view.takeNameFromUser();
         String surname = view.takeSurnameFromUser();
 
-        dao.addStudent(new Student(id, login, password, "Student", name, surname));
+        dao.addStudent(new Student(id, login, password,userType, name, surname));
     }
 
     public void removeStudent() {

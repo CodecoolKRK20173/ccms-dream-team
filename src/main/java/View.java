@@ -119,10 +119,10 @@ public class View {
         return surname;
     }
 
-
     public void showGrades (ArrayList<Assignment> assignments){
         for(Assignment assi : assignments) {
             System.out.println(assi.getAssignId() + " - " + assi.getTitle() + " - grade: " + assi.getGrade());
+
         }
     }
 
@@ -181,4 +181,8 @@ public class View {
         //scanner.close();
         return option;
     }
+
+//    public void showUserType(User user){
+//        System.out.println(user.getUserType());
+//    }
 }
