@@ -1,35 +1,50 @@
 import java.util.*;
 public class StudentController {
 
-    private Student loggedStudent;
     private View view;
     private DAOStudent dao;
+    private DAOAssignment daoAssignment;
+    private Student loggedStudent;
 
-    public StudentController(int id, View view, DAOStudent dao) {
-        this.loggedStudent = createLoggedUser(id);
+    public StudentController(int id, View view, DAOStudent dao, DAOAssignment daoAssignment) {
         this.view = view;
         this.dao = dao;
+        this.daoAssignment = daoAssignment;
+        this.loggedStudent = createLoggedUser(id);
         run();
     }
 
     public Student createLoggedUser(int id) {
-        return dao.getStudent(id);
+        Student student = this.dao.getStudent(id);
+        return student;
     }
-
 
     public void run() {
         while(true) {
             view.studentMenu();
-            String option = "0"; //to wyrzucić potem
-            //String option = view.getOption();
+            String option = "1";
             if(option.equals("1")) {
-                int assignId = view.getId();
-                String assignmentLink = view.getAssignmenntLink();
-                this.dao.submitAssignment(this.loggedStudent, assignId, assignmentLink);
+                ArrayList<Assignment> assignments = daoAssignment.getAssignments(this.loggedStudent);
+                if(assignments == null) {
+                    System.out.println("There is no assignment");
+                    continue;
+                }
+                try {
+                    view.showAssignmentsIdxs(assignments);
+                    int assignId = view.getId();
+                    String assignmentLink = view.getAssignmentLink();
+                    this.daoAssignment.submitAssignment(this.loggedStudent, assignId, assignmentLink);
+                } catch (Exception e) {
+                    System.out.println("Wrong assignmnent id");
+                }
             }
-            if(option.equals("2")) {
-                Map<String,Integer> grades = dao.getGrades(this.loggedStudent);
-                this.view.showGrades(grades);
+            else if(option.equals("2")) {
+                ArrayList<Assignment> assignments = daoAssignment.getAssignments(this.loggedStudent);
+                if(assignments == null) {
+                    System.out.println("There is no assignment");
+                    continue;
+                }
+                this.view.showGrades(assignments);
             }
             else if(option.equals("0")) {
                 System.exit(0);

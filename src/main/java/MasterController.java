@@ -6,9 +6,11 @@ public class MasterController {
     private int id;
     private String userType;
     private View view;
+    private DAOAssignment daoAssignment;
 
     public MasterController(View view) {
         this.view = view;
+        this.daoAssignment = new DaoAssignment();
     }
 
     public void login(String login, String password) {
@@ -54,9 +56,9 @@ public class MasterController {
 //        else if(this.userType.equals("mentor")) {
 //            new MentorController(this.id, this.view, new DaoMentor());
 //        }
-//        else if(this.userType.equals("student")) {
-//            new StudentController(this.id, this.view, new DaoStudent());
-//        }
+        else if(this.userType.equals("student")) {
+            new StudentController(this.id, this.view, new DaoStudent(), daoAssignment);
+        }
     }
 
 }
