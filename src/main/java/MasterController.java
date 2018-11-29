@@ -27,7 +27,6 @@ public class MasterController {
                 String password2 = recordFromDatabase.getString("password");
 
                 if (login.equals(login2) && password.equals(password2)) {
-                    view.clearScreen();
                     System.out.println("\n  Logged in succesfully as: " + login2);
                     this.id = recordFromDatabase.getInt("id");
                     this.userType = recordFromDatabase.getString("userType");
@@ -51,7 +50,6 @@ public class MasterController {
     }
 
 
-
     private void createUserController(int id, String userType) throws SQLException {
         try {
             if (this.userType.equals("admin")) {
@@ -60,6 +58,8 @@ public class MasterController {
                 c.close();
                 new AdminController(this.id, this.view, new DaoAdmin());
             } else if (this.userType.equals("office")) {
+                sqlStatement.close();
+                c.close();
                 new OfficeController(this.id, this.view, new DaoOffice());
             }
             else if(this.userType.equals("mentor")) {
@@ -68,24 +68,21 @@ public class MasterController {
                 new MentorController(this.id, this.view, new DaoMentor());
             }
 
-//        else if(this.userType.equals("student")) {
-//            new StudentController(this.id, this.view, new DaoStudent());
-//        }
+        else if(this.userType.equals("student")) {
+                sqlStatement.close();
+                c.close();
+            new StudentController(this.id, this.view, new DaoStudent(), new DaoAssignment());
+        }
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
+
         }
     }
     //        public void disconnect() throws SQLException {
     //            sqlStatement.close();
     //            c.close();
     //        }
-
-
-    //    public static void connect() throws Exception {
-    //        Class.forName("org.sqlite.JDBC");
-    //        c = DriverManager.getConnection("jdbc:sqlite:ccms.db");
-    //    }
 
 }

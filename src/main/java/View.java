@@ -11,8 +11,8 @@ public class View {
                 " (1) List mentors\n " +
                 " (2) List students\n " +
                 " (3) Add mentor\n " +
-                " (4) Remove mentor\n" +
-                " (5) Edit mentor\n" +
+                " (4) Remove mentor\n " +
+                " (5) Edit mentor\n " +
                 " (0) Exit CcMS");
     }
 
@@ -45,14 +45,14 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return link;
     }
 
-    public int getOption(){
+    public String getOption(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
-        int option = scanner.nextInt();
+        String option = scanner.nextLine();
         //scanner.close();
         return option;
     }
@@ -61,13 +61,21 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         String id = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return Integer.parseInt(id);
+    }
+
+    public String getAssignmentLink() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Put the assignment link: ");
+        String link = scanner.nextLine();
+//        scanner.close();
+        return link;
     }
 
     public String getNickFromUser(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter nick: ");
+        System.out.println("Enter user login: ");
         String nick = scanner.nextLine();
         //scanner.close();
         return nick;
@@ -111,23 +119,16 @@ public class View {
         return surname;
     }
 
-    //deadcode to delete
-    public void showStudentsList(ArrayList studentsList){
-        for (int i = 0; i <= studentsList.size(); i++ ){
-            System.out.println(studentsList.get(i));
+    public void showGrades (ArrayList<Assignment> assignments){
+        for(Assignment assi : assignments) {
+            System.out.println(assi.getAssignId() + " - " + assi.getTitle() + " - grade: " + assi.getGrade());
+
         }
     }
 
-    //deadcode to delete
-    public void showMentorsList (ArrayList mentorsList){
-        for (int i = 0; i <= mentorsList.size(); i++) {
-            System.out.println(mentorsList.get(i));
-        }
-    }
-
-    public void showGrades (Map<String,Integer> grades){
-        for(Map.Entry<String,Integer> entry : grades.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+    public void showAssignmentsIdxs (ArrayList<Assignment> assignments){
+        for(Assignment assi : assignments) {
+            System.out.println(assi.getAssignId() + " - " + assi.getTitle());
         }
     }
 
