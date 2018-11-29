@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DaoAdmin implements DAOAdmin {
     private Connection c = null;
@@ -14,7 +16,6 @@ public class DaoAdmin implements DAOAdmin {
         String surname = user.getSurname();
 
         try {
-            //connect();
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             sqlStatement = c.prepareStatement("INSERT INTO Users (login, password, name, surname, userType) VALUES (?, ?, ?, ?, ?)");
@@ -25,11 +26,9 @@ public class DaoAdmin implements DAOAdmin {
             sqlStatement.setString(5, userType);
 
             sqlStatement.executeUpdate();
-            //disconnect();
+            System.out.println("  Mentor " + name + " added to database successfully");
             sqlStatement.close();
             c.close();
-            System.out.println("  Mentor " + name + " added to database successfully");
-            //return null;
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
@@ -53,5 +52,63 @@ public class DaoAdmin implements DAOAdmin {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
+    }
+
+
+    public ArrayList<Mentor> getMentors() {
+        ArrayList<Mentor> mentors = new ArrayList<Mentor>();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("SELECT * FROM Users WHERE userType LIKE 'mentor'");
+
+            ResultSet recordFromDatabase = sqlStatement.executeQuery();
+            while ( recordFromDatabase.next() ) {
+                int id = recordFromDatabase.getInt("id");
+                String login = recordFromDatabase.getString("login");
+                String password = recordFromDatabase.getString("password");
+                String name = recordFromDatabase.getString("name");
+                String surname = recordFromDatabase.getString("surname");
+                String userType = recordFromDatabase.getString("userType");
+                mentors.add(new Mentor(id, login, password, name, surname, userType) );
+            }
+
+            recordFromDatabase.close();
+            sqlStatement.close();
+            c.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        return mentors;
+    }
+
+
+    public ArrayList<Student> getStudents() {
+        ArrayList<Student> students = new ArrayList<Student>();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("SELECT * FROM Users WHERE userType LIKE 'student'");
+
+            ResultSet recordFromDatabase = sqlStatement.executeQuery();
+            while (recordFromDatabase.next()) {
+                int id = recordFromDatabase.getInt("id");
+                String login = recordFromDatabase.getString("login");
+                String password = recordFromDatabase.getString("password");
+                String name = recordFromDatabase.getString("name");
+                String surname = recordFromDatabase.getString("surname");
+                String userType = recordFromDatabase.getString("userType");
+                students.add(new Student(id, login, password, name, surname, userType));
+            }
+
+            recordFromDatabase.close();
+            sqlStatement.close();
+            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+        return students;
     }
 }

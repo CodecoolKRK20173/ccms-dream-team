@@ -21,54 +21,69 @@ public class MasterController {
             sqlStatement.setString(2, password);
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
 
-            if ( recordFromDatabase.next() ) {
+            if (recordFromDatabase.next()) {
 
                 String login2 = recordFromDatabase.getString("login");
                 String password2 = recordFromDatabase.getString("password");
 
                 if (login.equals(login2) && password.equals(password2)) {
+                    view.clearScreen();
                     System.out.println("\n  Logged in succesfully as: " + login2);
                     this.id = recordFromDatabase.getInt("id");
                     this.userType = recordFromDatabase.getString("userType");
                     createUserController(id, userType);
-                } else { System.out.println("  Wrong login or password (or both)."); }
-            } else { System.out.println("  Wrong login or password (or both).");}
-            recordFromDatabase.close();
-            //disconnect();
-            sqlStatement.close();
-            c.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+                } else {
+                    recordFromDatabase.close();
+                    //disconnect();
+                    sqlStatement.close();
+                    c.close();
+                    System.out.println("  Wrong login or password (or both).");
+                }
+            } else {  System.out.println("  Wrong login or password (or both).");  }
+//            recordFromDatabase.close();
+//            //disconnect();
+//            sqlStatement.close();
+//            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         }
     }
 
-    private void createUserController(int id, String userType) {
-        if(this.userType.equals("admin")) {
-            new AdminController(this.id, this.view, new DaoAdmin());
-        }
-        else if(this.userType.equals("office")) {
-            new OfficeController(this.id, this.view, new DaoOffice());
-        }
-        else if(this.userType.equals("mentor")) {
-            new MentorController(this.id, this.view, new DaoMentor());
-        }
+
+
+    private void createUserController(int id, String userType) throws SQLException {
+        try {
+            if (this.userType.equals("admin")) {
+                //disconnect();
+                sqlStatement.close();
+                c.close();
+                new AdminController(this.id, this.view, new DaoAdmin());
+            } else if (this.userType.equals("office")) {
+                new OfficeController(this.id, this.view, new DaoOffice());
+            }
+       else if(this.userType.equals("mentor")) {
+           new MentorController(this.id, this.view, new DaoMentor());
+       }
+
 //        else if(this.userType.equals("student")) {
 //            new StudentController(this.id, this.view, new DaoStudent());
 //        }
-    }
 
-}
-    //    public void disconnect() throws SQLException {
-    //        sqlStatement.close();
-    //        c.close();
-    //    }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
+    }
+    //        public void disconnect() throws SQLException {
+    //            sqlStatement.close();
+    //            c.close();
+    //        }
+
 
     //    public static void connect() throws Exception {
     //        Class.forName("org.sqlite.JDBC");
     //        c = DriverManager.getConnection("jdbc:sqlite:ccms.db");
     //    }
 
-
-
-
+}

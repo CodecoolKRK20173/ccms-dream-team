@@ -7,11 +7,14 @@ public class Main {
 
     public static void run() {
         View view = new View();
-        String login = view.getNickFromUser();
-        String password = view.getPasswordFromUser();
+        while (true) { //lipne to jest mentorzy od razu się skrzywią xD
+            String login = view.getNickFromUser();
+            String password = view.getPasswordFromUser();
 
 
-        MasterController masterController = new MasterController(view);
-        masterController.login(login, password);
+            MasterController masterController = new MasterController(view);
+            masterController.login(login, password);
+            View.clearScreen();
+        }
     }
 }

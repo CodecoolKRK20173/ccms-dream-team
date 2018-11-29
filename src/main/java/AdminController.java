@@ -4,42 +4,55 @@ public class AdminController {
     private DaoAdmin daoAdmin;
 
 
-    public AdminController(int id, View view, DaoAdmin daoAdmin){
+    public AdminController(int id, View view, DaoAdmin daoAdmin) {
         this.view = view;
         this.admin = admin;
         this.daoAdmin = daoAdmin;
+        menuWork();
     }
 
-    public void menuWork(){
-        view.adminMenu();
-        int opt = view.getOption();
+    public void menuWork() {
+        boolean isRunning = true;
+        while (isRunning) {
+            view.adminMenu();
+            String opt = view.getOptionForMenu();
 
-        switch (opt){
-            case 1:
-                //view.showMentorsList(mentorList);
-                break;
-            case 2:
-                //view.showStudentsList(studentsList);
-                break;
-            case 3:
-                //String mentorLogin = view.takeLoginFromUser();
-                String mentorName = view.takeNameFromUser();
-                String mentorSurname = view.takeSurnameFromUser();
-                //String mentorPasword = view.takePasswordFromUser();
-                //String uType = view.takeUserType();
-                //admin.addMentor(mentorLogin, mentorName, mentorSurname, mentorPasword, uType);
-                break;
-            case 4:
-                //int userId = view.getIdFromUser();
-                //admin.removeMentor(view.getIdFromUser());
-                break;
-            case 5:
-                //int userId = view.getIdFromUser();
-                //admin.editMentorData(view.getIdFromUser());
-                break;
-            case 0:
-                System.exit(0);
-                break;
+            switch (opt) {
+                case "1":
+                    view.clearScreen();
+                    view.showListOfMentors(daoAdmin.getMentors());
+                    break;
+                case "2":
+                    view.clearScreen();
+                    view.showListOfStudents(daoAdmin.getStudents());
+                    break;
+                case "3":
+                    int id = 0;
+                    String login = view.getNickFromUser();
+                    String password = view.getPasswordFromUser();
+                    String userType = "mentor";
+                    String name = view.takeNameFromUser();
+                    String surname = view.takeSurnameFromUser();
+
+                    Mentor mentor = new Mentor(id, login, password, userType, name, surname);
+                    daoAdmin.addMentor(mentor);
+                    break;
+                case "4":
+                    //int userId = view.getIdFromUser();
+                    //admin.removeMentor(view.getIdFromUser());
+                    break;
+                case "5":
+                    //int userId = view.getIdFromUser();
+                    //admin.editMentorData(view.getIdFromUser());
+                    break;
+                case "0":
+                    isRunning = false;
+                    break;
+                default:
+                    view.clearScreen();
+                    System.out.println("  Invalid option input.\n");
+                    break;
+            }
         }
     }
 }
