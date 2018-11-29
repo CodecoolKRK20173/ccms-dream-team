@@ -27,12 +27,15 @@ public class AdminController {
                     view.showListOfStudents(daoAdmin.getStudents());
                     break;
                 case "3":
-                    //String mentorLogin = view.takeLoginFromUser();
-                    String mentorName = view.takeNameFromUser();
-                    String mentorSurname = view.takeSurnameFromUser();
-                    //String mentorPasword = view.takePasswordFromUser();
-                    //String uType = view.takeUserType();
-                    //admin.addMentor(mentorLogin, mentorName, mentorSurname, mentorPasword, uType);
+                    int id = 0;
+                    String login = view.getNickFromUser();
+                    String password = view.getPasswordFromUser();
+                    String userType = "mentor";
+                    String name = view.takeNameFromUser();
+                    String surname = view.takeSurnameFromUser();
+
+                    Mentor mentor = new Mentor(id, login, password, userType, name, surname);
+                    daoAdmin.addMentor(mentor);
                     break;
                 case "4":
                     //int userId = view.getIdFromUser();
@@ -48,6 +51,7 @@ public class AdminController {
                 default:
                     view.clearScreen();
                     System.out.println("  Invalid option input.\n");
+                    break;
             }
         }
     }

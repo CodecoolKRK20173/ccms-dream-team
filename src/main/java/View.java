@@ -49,10 +49,10 @@ public class View {
         return link;
     }
 
-    public int getOption(){
+    public String getOption(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
-        int option = scanner.nextInt();
+        String option = scanner.nextLine();
         //scanner.close();
         return option;
     }
@@ -63,6 +63,14 @@ public class View {
         String id = scanner.nextLine();
         //scanner.close();
         return Integer.parseInt(id);
+    }
+
+    public String getAssignmentLink() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Put the assignment link: ");
+        String link = scanner.nextLine();
+//        scanner.close();
+        return link;
     }
 
     public String getNickFromUser(){
@@ -112,9 +120,15 @@ public class View {
     }
 
 
-    public void showGrades (Map<String,Integer> grades){
-        for(Map.Entry<String,Integer> entry : grades.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+    public void showGrades (ArrayList<Assignment> assignments){
+        for(Assignment assi : assignments) {
+            System.out.println(assi.getAssignId() + ", " + assi.getTitle() + ",grade " + assi.getGrade());
+        }
+    }
+
+    public void showAssignmentsIdxs (ArrayList<Assignment> assignments){
+        for(Assignment assi : assignments) {
+            System.out.println(assi.getAssignId() + ": " + assi.getTitle());
         }
     }
 
@@ -139,6 +153,7 @@ public class View {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+        System.out.println();
     }
 
     public static void showListOfMentors(ArrayList<Mentor> mentors) {
