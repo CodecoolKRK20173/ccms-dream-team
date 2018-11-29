@@ -49,13 +49,10 @@ public class DaoAdmin implements DAOAdmin {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
-            sqlStatement = c.prepareStatement("DELETE FROM Users WHERE id LIKE ?");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("DELETE FROM Users WHERE id = ?");
             sqlStatement.setInt(1, id);
             sqlStatement.executeUpdate();
-            sqlStatement.close();
-            c.close();
             System.out.println("  Mentor deleted from to database successfully");
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
