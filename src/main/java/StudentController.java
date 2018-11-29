@@ -10,7 +10,7 @@ public class StudentController {
         this.view = view;
         this.dao = dao;
         run();
-    }
+}
 
     public Student createLoggedUser(int id) {
         return dao.getStudent(id);
