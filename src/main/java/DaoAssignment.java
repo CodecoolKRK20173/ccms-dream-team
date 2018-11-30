@@ -20,7 +20,7 @@ public class DaoAssignment implements DAOAssignment {
             sqlStatement.setInt(1, studentId);
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
 
-            if (recordFromDatabase.next()) {
+            while (recordFromDatabase.next()) {
                 int assignId = recordFromDatabase.getInt("assignId");
                 String title = recordFromDatabase.getString("title");
                 String link = recordFromDatabase.getString("link");
@@ -28,8 +28,7 @@ public class DaoAssignment implements DAOAssignment {
                 Assignment assignment = new Assignment(studentId, title, link, grade);
                 assignment.setAssignmentId(assignId);
                 assignments.add(assignment);
-            } else {
-                return null;
+                System.out.println("assignment added");
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -41,6 +40,9 @@ public class DaoAssignment implements DAOAssignment {
             } catch (Exception e){
 
             }
+        }
+        if (assignments.isEmpty()) {
+            return null;
         }
         return assignments;
     }
