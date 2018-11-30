@@ -13,13 +13,13 @@ public class View {
                 " (3) Add mentor\n " +
                 " (4) Remove mentor\n " +
                 " (5) Edit mentor\n " +
-                " (0) Exit CcMS");
+                " (0) Logout");
     }
 
     public void officeMenu(){
         System.out.println("What would you like to do:\n" +
                 " (1) List students\n" +
-                " (0) Exit CcMS");
+                " (0) Logout");
     }
 
     public void mentorMenu(){
