@@ -29,6 +29,7 @@ public class MasterController {
                 if (login.equals(login2) && password.equals(password2)) {
                     View.clearScreen();
                     System.out.println("\n  Logged in succesfully as: " + login2);
+                    System.out.println();
                     this.id = recordFromDatabase.getInt("id");
                     this.userType = recordFromDatabase.getString("userType");
                     createUserController(id, userType);
