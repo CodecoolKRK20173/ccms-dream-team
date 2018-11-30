@@ -5,11 +5,13 @@ public class MentorController {
     private Mentor loggedmentor;
     private View view;
     private DAOMentor dao;
+    private DAOStudent daoStudent;
 
-    public MentorController(int id, View view, DAOMentor dao){
+    public MentorController(int id, View view, DAOMentor dao, DAOStudent daoStudent){
         this.dao = dao;
         this.loggedmentor = getMentor(id);
         this.view = view;
+        this.daoStudent = daoStudent;
         run();
     }
 
@@ -87,13 +89,37 @@ public class MentorController {
     }
 
     public void editStudentData() {
-        int id = view.getId();
-        String login = view.getNickFromUser();
-        String password = view.getPasswordFromUser();
-        String name = view.takeNameFromUser();
-        String surname = view.takeSurnameFromUser();
+        String newLogin;
+        String newPassword;
+        String newName;
+        String newSurname;
 
-        dao.editStudent(id, login, password, name, surname);
+        int id = view.getId();
+        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
+
+        if (view.takeNameFromUser().equals("Name")){
+            newName = view.takeNameFromUser();
+        } else {
+            newName = daoStudent.getStudent(id).getName();
+        }
+        if (view.takeSurnameFromUser().equals("Surname")){
+            newSurname = view.takeSurnameFromUser();
+        } else {
+            newSurname = daoStudent.getStudent(id).getSurname();
+        }
+        if (view.getNickFromUser().equals("Login")){
+            newLogin = view.getNickFromUser();
+        } else {
+            newLogin = daoStudent.getStudent(id).getLogin();
+        }
+        if (view.getPasswordFromUser().equals("Password")){
+            newPassword = view.getPasswordFromUser();
+        } else {
+            newPassword = daoStudent.getStudent(id).getPassword();
+        }
+//        view
+
+        dao.editStudent(id, newLogin, newPassword, newName, newSurname);
     }
 
     public String toString() {

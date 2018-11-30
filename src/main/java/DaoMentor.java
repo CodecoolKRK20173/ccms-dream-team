@@ -136,11 +136,11 @@ public class DaoMentor implements DAOMentor {
     }
 
     @Override
-    public void editStudent(int id, String login, String password, String name, String surname) {
+    public void editStudent(int id, String newLogin, String newPassword, String newName, String newSurname) {
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("What would you like to edit(Name, Surname, Login, Password, Type):\n");
-        String inputColumn = scan.nextLine();
+//        Scanner scan = new Scanner(System.in);
+//        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
+//        String inputColumn = scan.nextLine();
 
         Connection c = null;
         Statement stmt = null;
@@ -148,24 +148,24 @@ public class DaoMentor implements DAOMentor {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             stmt = c.createStatement();
-            if (inputColumn.equals("Name")){
-                System.out.println("Enter new name:\t");
-                String newName = scan.nextLine();
+            if (newName.equals("Name")){
+//                System.out.println("Enter new name:\t");
+//                String newName = scan.nextLine();
                 stmt.executeUpdate( "UPDATE Users SET NAME = '" + newName +"' WHERE ID = " + id + ";");
             }
-            if (inputColumn.equals("Surname")){
-                System.out.println("Enter new surname:\t");
-                String newSurname = scan.nextLine();
+            if (newSurname.equals("Surname")){
+//                System.out.println("Enter new surname:\t");
+//                String newSurname = scan.nextLine();
                 stmt.executeUpdate("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id +";" );
             }
-            if (inputColumn.equals("Login")){
-                System.out.println("Enter new login:\t");
-                String newLogin = scan.nextLine();
+            if (newLogin.equals("Login")){
+//                System.out.println("Enter new login:\t");
+//                String newLogin = scan.nextLine();
                 stmt.executeUpdate("UPDATE Users set LOGIN = '" + newLogin + "' WHERE ID = " + id + ";");
             }
-            if (inputColumn.equals("Password")){
-                System.out.println("Enter new password:\t");
-                String newLogin = scan.nextLine();
+            if (newPassword.equals("Password")){
+//                System.out.println("Enter new password:\t");
+//                String newLogin = scan.nextLine();
                 stmt.executeUpdate("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
             }
         } catch (Exception e){
