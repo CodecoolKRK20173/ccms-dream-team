@@ -6,10 +6,10 @@ public class StudentController {
     private DAOAssignment daoAssignment;
     private Student loggedStudent;
 
-    public StudentController(int id, View view, DAOStudent dao, DAOAssignment daoAssignment) {
+    public StudentController(int id, View view, DAOStudent dao) {
         this.view = view;
         this.dao = dao;
-        this.daoAssignment = daoAssignment;
+        this.daoAssignment = new DaoAssignment();
         this.loggedStudent = createLoggedUser(id);
         run();
 }
@@ -20,7 +20,8 @@ public class StudentController {
     }
 
     public void run() {
-        while(true) {
+        boolean isRunning = true;
+        while(isRunning) {
             view.printEmptyLine();
             view.studentMenu();
             String option = view.getOption();
@@ -48,7 +49,7 @@ public class StudentController {
                 this.view.showGrades(assignments);
             }
             else if(option.equals("0")) {
-                System.exit(0);
+                isRunning = false;
             }
         }
     }

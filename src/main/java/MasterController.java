@@ -67,12 +67,12 @@ public class MasterController {
             else if(this.userType.equals("mentor")) {
                 sqlStatement.close();
                 c.close();
-                new MentorController(this.id, this.view, new DaoMentor(), new DaoAssignment());
+                new MentorController(this.id, this.view, new DaoMentor());
             }
             else if(this.userType.equals("student")) {
                     sqlStatement.close();
                     c.close();
-                new StudentController(this.id, this.view, new DaoStudent(), new DaoAssignment());
+                new StudentController(this.id, this.view, new DaoStudent());
             }
 
         } catch (Exception e) {
