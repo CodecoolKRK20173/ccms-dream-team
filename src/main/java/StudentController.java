@@ -21,6 +21,7 @@ public class StudentController {
 
     public void run() {
         while(true) {
+            view.printEmptyLine();
             view.studentMenu();
             String option = view.getOption();
             if(option.equals("1")) {

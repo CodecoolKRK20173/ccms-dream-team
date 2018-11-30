@@ -1,24 +1,27 @@
 public class Assignment {
 
-    int assignId;
+//    int assignId;
     int studentId;
     String title;
     String link;
     int grade;
+    int assignId;
 
-    public Assignment(int assignId, int studentId, String title) {
-        this.assignId = assignId;
+    public Assignment(int studentId, String title) {
         this.studentId = studentId;
         this.title = title;
         this.link = "not submitted";
         this.grade = 0;
     }
-    public Assignment(int assignId, int studentId, String title, String link, int grade) {
-        this.assignId = assignId;
+    public Assignment(int studentId, String title, String link, int grade) {
         this.studentId = studentId;
         this.title = title;
         this.link = link;
         this.grade = grade;
+    }
+
+    public void setAssignmentId(int assignId) {
+        this.assignId = assignId;
     }
 
     public void setLink(String link) {
@@ -27,10 +30,6 @@ public class Assignment {
 
     public void setGrade(int grade) {
         this.grade = grade;
-    }
-
-    public int getAssignId() {
-        return assignId;
     }
 
     public int getStudentId() {
@@ -47,5 +46,9 @@ public class Assignment {
 
     public int getGrade() {
         return grade;
+    }
+
+    public int getAssignId() {
+        return  assignId;
     }
 }
