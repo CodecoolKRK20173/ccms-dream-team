@@ -42,7 +42,7 @@ public class View {
         System.out.println("What would you like to do:\n" +
                 " (1) Submit assignment\n" +
                 " (2) View grades\n" +
-                " (0) Exit CcMS");
+                " (0) Logout");
     }
 
     public String getAssignmenntLink() {

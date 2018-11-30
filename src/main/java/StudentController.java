@@ -20,7 +20,8 @@ public class StudentController {
     }
 
     public void run() {
-        while(true) {
+        boolean isRunning = true;
+        while(isRunning) {
             view.printEmptyLine();
             view.studentMenu();
             String option = view.getOption();
@@ -48,7 +49,7 @@ public class StudentController {
                 this.view.showGrades(assignments);
             }
             else if(option.equals("0")) {
-                System.exit(0);
+                isRunning = false;
             }
         }
     }
