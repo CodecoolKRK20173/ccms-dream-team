@@ -28,7 +28,6 @@ public class DaoAssignment implements DAOAssignment {
                 Assignment assignment = new Assignment(studentId, title, link, grade);
                 assignment.setAssignmentId(assignId);
                 assignments.add(assignment);
-                System.out.println("assignment added");
             }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

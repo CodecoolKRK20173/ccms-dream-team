@@ -9,11 +9,11 @@ public class MentorController {
     private DAOMentor dao;
     private DAOAssignment daoAssignment;
 
-    public MentorController(int id, View view, DAOMentor dao, DAOAssignment daoAssignment){
+    public MentorController(int id, View view, DAOMentor dao){
         this.dao = dao;
         this.loggedmentor = getMentor(id);
         this.view = view;
-        this.daoAssignment = daoAssignment;
+        this.daoAssignment = new DaoAssignment();
         run();
     }
 

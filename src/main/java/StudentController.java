@@ -6,10 +6,10 @@ public class StudentController {
     private DAOAssignment daoAssignment;
     private Student loggedStudent;
 
-    public StudentController(int id, View view, DAOStudent dao, DAOAssignment daoAssignment) {
+    public StudentController(int id, View view, DAOStudent dao) {
         this.view = view;
         this.dao = dao;
-        this.daoAssignment = daoAssignment;
+        this.daoAssignment = new DaoAssignment();
         this.loggedStudent = createLoggedUser(id);
         run();
 }
