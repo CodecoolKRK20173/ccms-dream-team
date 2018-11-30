@@ -13,18 +13,17 @@ public class OfficeController {
 
 
     public void run() {
-        boolean isRunning = true;
-        while (isRunning) {
+        String option ="";
+
+        while (!option.equals("0")) {
             view.officeMenu();
-            String option = view.getOptionForMenu();
+            option = view.getOptionForMenu();
             switch (option) {
                 case "1":
                     view.clearScreen();
                     view.showListOfStudents(daoOffice.getStudents());
                     break;
-                case "0":
-                    isRunning = false;
-                    break;
+//
                 default:
                     view.clearScreen();
                     System.out.println("  Invalid option input.\n");
