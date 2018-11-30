@@ -2,6 +2,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DaoMentor implements DAOMentor {
 
@@ -117,8 +118,7 @@ public class DaoMentor implements DAOMentor {
     public void removeStudent(int id) {
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-            c.setAutoCommit(false);
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             sqlStatement = c.prepareStatement("DELETE FROM Users WHERE id LIKE ?");
             sqlStatement.setInt(1, id);
             sqlStatement.executeUpdate();
@@ -138,31 +138,73 @@ public class DaoMentor implements DAOMentor {
     @Override
     public void editStudent(int id, String login, String password, String name, String surname) {
 
-        try {
-            //connect();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("What would you like to edit(Name, Surname, Login, Password, Type):\n");
+        String inputColumn = scan.nextLine();
+
+        Connection c = null;
+        Statement stmt = null;
+        try{
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
-            sqlStatement = c.prepareStatement("UPDATE Users set login = ?, password = ?, name = ?, surname = ? where ID = ?");
-            sqlStatement.setString(1, login);
-            sqlStatement.setString(2, password);
-            sqlStatement.setString(3, name);
-            sqlStatement.setString(4, surname);
-            sqlStatement.setInt(5, id);
-
-            sqlStatement.executeUpdate();
-            System.out.println("  Student " + name + " added to database successfully");
-            //return null;
-        } catch (Exception e) {
+            stmt = c.createStatement();
+            if (inputColumn.equals("Name")){
+                System.out.println("Enter new name:\t");
+                String newName = scan.nextLine();
+                stmt.executeUpdate( "UPDATE Users SET NAME = '" + newName +"' WHERE ID = " + id + ";");
+            }
+            if (inputColumn.equals("Surname")){
+                System.out.println("Enter new surname:\t");
+                String newSurname = scan.nextLine();
+                stmt.executeUpdate("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id +";" );
+            }
+            if (inputColumn.equals("Login")){
+                System.out.println("Enter new login:\t");
+                String newLogin = scan.nextLine();
+                stmt.executeUpdate("UPDATE Users set LOGIN = '" + newLogin + "' WHERE ID = " + id + ";");
+            }
+            if (inputColumn.equals("Password")){
+                System.out.println("Enter new password:\t");
+                String newLogin = scan.nextLine();
+                stmt.executeUpdate("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
+            }
+        } catch (Exception e){
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
-            //disconnect();
         } finally {
-            try {
-                sqlStatement.close();
+            try{
+                stmt.close();
                 c.close();
             } catch (Exception e){
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
             }
         }
+
+//        try {
+//            //connect();
+//            Class.forName("org.sqlite.JDBC");
+//            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+//            sqlStatement = c.prepareStatement("UPDATE Users set login = ?, password = ?, name = ?, surname = ? where ID = ?");
+//            sqlStatement.setString(1, login);
+//            sqlStatement.setString(2, password);
+//            sqlStatement.setString(3, name);
+//            sqlStatement.setString(4, surname);
+//            sqlStatement.setInt(5, id);
+//
+//            sqlStatement.executeUpdate();
+//            System.out.println("  Student " + name + " added to database successfully");
+//            //return null;
+//        } catch (Exception e) {
+//            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+//            System.exit(0);
+//            //disconnect();
+//        } finally {
+//            try {
+//                sqlStatement.close();
+//                c.close();
+//            } catch (Exception e){
+//            }
+//        }
     }
 
     @Override

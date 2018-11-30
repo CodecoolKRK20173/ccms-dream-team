@@ -34,6 +34,10 @@ public class View {
                 " (0) Exit CcMS");
     }
 
+    public  void printEmptyLine() {
+        System.out.println();
+    }
+
     public void studentMenu(){
         System.out.println("What would you like to do:\n" +
                 " (1) Submit assignment\n" +
@@ -52,6 +56,14 @@ public class View {
     public String getOption(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
+        String option = scanner.nextLine();
+        //scanner.close();
+        return option;
+    }
+
+    public String getAssignmentTitle(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter title: ");
         String option = scanner.nextLine();
         //scanner.close();
         return option;

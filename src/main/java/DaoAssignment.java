@@ -25,7 +25,8 @@ public class DaoAssignment implements DAOAssignment {
                 String title = recordFromDatabase.getString("title");
                 String link = recordFromDatabase.getString("link");
                 int grade = recordFromDatabase.getInt("grade");
-                Assignment assignment = new Assignment(assignId, studentId, title, link, grade);
+                Assignment assignment = new Assignment(studentId, title, link, grade);
+                assignment.setAssignmentId(assignId);
                 assignments.add(assignment);
             } else {
                 return null;
@@ -53,6 +54,34 @@ public class DaoAssignment implements DAOAssignment {
             sqlStatement.setString(1, assignmentLink);
             sqlStatement.setInt(2, assignId);
             sqlStatement.setInt(3, id);
+            sqlStatement.executeUpdate();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e){
+
+            }
+        }
+    }
+
+    public void addAssignment(Assignment assignment) {
+        int studentId = assignment.getStudentId();
+        String title = assignment.getTitle();
+        String link = assignment.getLink();
+        int grade = assignment.getGrade();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("INSERT INTO Assignments (studentId, title, link, grade)" +
+                                                "VALUES (?, ?, ?, ?)");
+            sqlStatement.setInt(1, studentId);
+            sqlStatement.setString(2, title);
+            sqlStatement.setString(3, link);
+            sqlStatement.setInt(4, grade);
             sqlStatement.executeUpdate();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
