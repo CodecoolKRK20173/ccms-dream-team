@@ -9,7 +9,8 @@ public class Main {
         View view = new View();
         boolean isActive = true;
         while (isActive) { //lipne to jest mentorzy od razu się skrzywią xD
-            System.out.println("Wlecome into CcMS\n" +
+            View.clearScreen();
+            System.out.println("Welcome into CcMS\n" +
                                 "(1) Login\n" +
                                 "(0) Exit CcMS");
             String option = view.getOptionForMenu();
