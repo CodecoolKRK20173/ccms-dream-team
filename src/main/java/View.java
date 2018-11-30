@@ -31,7 +31,7 @@ public class View {
                 " (5) Add student\n" +
                 " (6) Remove student\n" +
                 " (7) Edit student\n" +
-                " (0) Exit CcMS");
+                " (0) Logout CcMS");
     }
 
     public  void printEmptyLine() {
