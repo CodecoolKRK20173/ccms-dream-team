@@ -40,6 +40,7 @@ public class AdminController {
                 case "4":
                     int userIdDel = view.getId();
                     daoAdmin.removeMentor(userIdDel);
+                    view.showListOfMentors(daoAdmin.getMentors());
                     break;
                 case "5":
                     int userIdEdit = view.getId();

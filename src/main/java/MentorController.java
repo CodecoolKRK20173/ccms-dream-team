@@ -7,6 +7,7 @@ public class MentorController {
     private Mentor loggedmentor;
     private View view;
     private DAOMentor dao;
+//    private DAOStudent daoStudent;
     private DAOAssignment daoAssignment;
 
     public MentorController(int id, View view, DAOMentor dao){
@@ -14,6 +15,7 @@ public class MentorController {
         this.loggedmentor = getMentor(id);
         this.view = view;
         this.daoAssignment = new DaoAssignment();
+//        this.daoStudent = new DaoStudent();
         run();
     }
 
@@ -57,7 +59,7 @@ public class MentorController {
                     removeStudent();
                     break;
                 case "7":
-                    view.clearScreen();
+//                    view.clearScreen();
                     editStudentData();
                     break;
                 case "0":
@@ -92,13 +94,36 @@ public class MentorController {
     }
 
     public void editStudentData() {
+//        String newLogin;
+//        String newPassword;
+//        String newName;
+//        String newSurname;
+//
         int id = view.getId();
-        String login = view.getNickFromUser();
-        String password = view.getPasswordFromUser();
-        String name = view.takeNameFromUser();
-        String surname = view.takeSurnameFromUser();
+//        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
+//
+//        if (view.takeNameFromUser().equals("y")){
+//            newName = view.takeNameFromUser();
+//        } else {
+//            newName = daoStudent.getStudent(id).getName();
+//        }
+//        if (view.takeSurnameFromUser().equals("y")){
+//            newSurname = view.takeSurnameFromUser();
+//        } else {
+//            newSurname = daoStudent.getStudent(id).getSurname();
+//        }
+//        if (view.getNickFromUser().equals("y")){
+//            newLogin = view.getNickFromUser();
+//        } else {
+//            newLogin = daoStudent.getStudent(id).getLogin();
+//        }
+//        if (view.getPasswordFromUser().equals("y")){
+//            newPassword = view.getPasswordFromUser();
+//        } else {
+//            newPassword = daoStudent.getStudent(id).getPassword();
+//        }
 
-        dao.editStudent(id, login, password, name, surname);
+        dao.editStudent(id);
     }
 
     public String toString() {

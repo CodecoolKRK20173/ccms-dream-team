@@ -53,7 +53,8 @@ public class DaoAdmin implements DAOAdmin {
             sqlStatement = c.prepareStatement("DELETE FROM Users WHERE id = ?");
             sqlStatement.setInt(1, id);
             sqlStatement.executeUpdate();
-            System.out.println("  Mentor deleted from to database successfully");
+            View.clearScreen();
+            System.out.println("  Mentor deleted from database successfully");
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);

@@ -136,10 +136,11 @@ public class DaoMentor implements DAOMentor {
     }
 
     @Override
-    public void editStudent(int id, String login, String password, String name, String surname) {
+    public void editStudent(int id ) {
 
+//        String newLogin, String newPassword, String newName, String newSurname
         Scanner scan = new Scanner(System.in);
-        System.out.println("What would you like to edit(Name, Surname, Login, Password, Type):\n");
+        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
         String inputColumn = scan.nextLine();
 
         Connection c = null;
@@ -168,6 +169,10 @@ public class DaoMentor implements DAOMentor {
                 String newLogin = scan.nextLine();
                 stmt.executeUpdate("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
             }
+
+            System.out.println("\nStudent eddited successfully!");
+            System.out.println();
+
         } catch (Exception e){
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);

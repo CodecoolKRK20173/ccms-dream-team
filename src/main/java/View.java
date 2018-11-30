@@ -13,13 +13,13 @@ public class View {
                 " (3) Add mentor\n " +
                 " (4) Remove mentor\n " +
                 " (5) Edit mentor\n " +
-                " (0) Exit CcMS");
+                " (0) Logout");
     }
 
     public void officeMenu(){
         System.out.println("What would you like to do:\n" +
                 " (1) List students\n" +
-                " (0) Exit CcMS");
+                " (0) Logout");
     }
 
     public void mentorMenu(){
@@ -31,7 +31,7 @@ public class View {
                 " (5) Add student\n" +
                 " (6) Remove student\n" +
                 " (7) Edit student\n" +
-                " (0) Exit CcMS");
+                " (0) Logout CcMS");
     }
 
     public  void printEmptyLine() {
@@ -160,6 +160,7 @@ public class View {
             System.out.format(leftAlignFormat, id, login, userType, name, surname);
         }
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+        System.out.println();
     }
 
     public static void clearScreen() {
