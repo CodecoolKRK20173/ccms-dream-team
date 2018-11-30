@@ -59,7 +59,7 @@ private DAOAssignment daoAssignment;
                     removeStudent();
                     break;
                 case "7":
-                    view.clearScreen();
+//                    view.clearScreen();
                     editStudentData();
                     break;
                 case "0":
@@ -94,37 +94,36 @@ private DAOAssignment daoAssignment;
     }
 
     public void editStudentData() {
-        String newLogin;
-        String newPassword;
-        String newName;
-        String newSurname;
-
+//        String newLogin;
+//        String newPassword;
+//        String newName;
+//        String newSurname;
+//
         int id = view.getId();
-        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
+//        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
+//
+//        if (view.takeNameFromUser().equals("y")){
+//            newName = view.takeNameFromUser();
+//        } else {
+//            newName = daoStudent.getStudent(id).getName();
+//        }
+//        if (view.takeSurnameFromUser().equals("y")){
+//            newSurname = view.takeSurnameFromUser();
+//        } else {
+//            newSurname = daoStudent.getStudent(id).getSurname();
+//        }
+//        if (view.getNickFromUser().equals("y")){
+//            newLogin = view.getNickFromUser();
+//        } else {
+//            newLogin = daoStudent.getStudent(id).getLogin();
+//        }
+//        if (view.getPasswordFromUser().equals("y")){
+//            newPassword = view.getPasswordFromUser();
+//        } else {
+//            newPassword = daoStudent.getStudent(id).getPassword();
+//        }
 
-        if (view.takeNameFromUser().equals("Name")){
-            newName = view.takeNameFromUser();
-        } else {
-            newName = daoStudent.getStudent(id).getName();
-        }
-        if (view.takeSurnameFromUser().equals("Surname")){
-            newSurname = view.takeSurnameFromUser();
-        } else {
-            newSurname = daoStudent.getStudent(id).getSurname();
-        }
-        if (view.getNickFromUser().equals("Login")){
-            newLogin = view.getNickFromUser();
-        } else {
-            newLogin = daoStudent.getStudent(id).getLogin();
-        }
-        if (view.getPasswordFromUser().equals("Password")){
-            newPassword = view.getPasswordFromUser();
-        } else {
-            newPassword = daoStudent.getStudent(id).getPassword();
-        }
-//        view
-
-        dao.editStudent(id, newLogin, newPassword, newName, newSurname);
+        dao.editStudent(id);
     }
 
     public String toString() {

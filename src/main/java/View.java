@@ -160,6 +160,7 @@ public class View {
             System.out.format(leftAlignFormat, id, login, userType, name, surname);
         }
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
+        System.out.println();
     }
 
     public static void clearScreen() {
