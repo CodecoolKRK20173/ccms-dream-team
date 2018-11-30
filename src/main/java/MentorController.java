@@ -8,7 +8,7 @@ public class MentorController {
     private View view;
     private DAOMentor dao;
     private DAOStudent daoStudent;
-private DAOAssignment daoAssignment;
+    private DAOAssignment daoAssignment;
 
     public MentorController(int id, View view, DAOMentor dao, DAOAssignment daoAssignment){
         this.dao = dao;
