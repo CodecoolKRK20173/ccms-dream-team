@@ -26,6 +26,7 @@ public class StudentController {
             view.studentMenu();
             String option = view.getOption();
             if(option.equals("1")) {
+                view.clearScreen();
                 ArrayList<Assignment> assignments = daoAssignment.getAssignments(this.loggedStudent);
                 if(assignments == null) {
                     System.out.println("There is no assignment");
@@ -41,6 +42,7 @@ public class StudentController {
                 }
             }
             else if(option.equals("2")) {
+                view.clearScreen();
                 ArrayList<Assignment> assignments = daoAssignment.getAssignments(this.loggedStudent);
                 if(assignments == null) {
                     System.out.println("There is no assignment");
