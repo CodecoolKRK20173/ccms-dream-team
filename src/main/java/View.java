@@ -49,7 +49,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
-        //scanner.close();
         return link;
     }
 
@@ -57,7 +56,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         String option = scanner.nextLine();
-        //scanner.close();
         return option;
     }
 
@@ -65,7 +63,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter title: ");
         String option = scanner.nextLine();
-        //scanner.close();
         return option;
     }
 
@@ -73,7 +70,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         String id = scanner.nextLine();
-        //scanner.close();
         return Integer.parseInt(id);
     }
 
@@ -81,7 +77,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
-//        scanner.close();
         return link;
     }
 
@@ -94,24 +89,8 @@ public class View {
     }
 
     public String getPasswordFromUser(){
-//        Console cnsl = null;
-//        try {
-//            cnsl = System.console();
-//            if (cnsl != null) {
-//                //login = cnsl.readLine("Please provide a username: ");
-//                char[] pwd = cnsl.readPassword("Enter password: ");
-//                String password = String.valueOf(pwd);
-//                return password;
-//            }
-//        } catch(Exception ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter password:\t");
-        String password = scanner.nextLine();
-        //scanner.close();
+        char[] passwd = System.console().readPassword("%s", "Enter user password:\n");
+        String password = String.valueOf(passwd);
         return password;
     }
 
@@ -119,7 +98,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name:\t");
         String name = scanner.nextLine();
-        //scanner.close();
         return name;
     }
 
