@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class MentorController {
 
-    private Mentor loggedmentor;
+    private Mentor loggedMentor;
     private View view;
     private DAOMentor dao;
     private DAOStudent daoStudent;
@@ -11,7 +11,7 @@ public class MentorController {
 
     public MentorController(int id, View view, DAOMentor dao){
         this.dao = dao;
-        this.loggedmentor = getMentor(id);
+        this.loggedMentor = getMentor(id);
         this.view = view;
         this.daoAssignment = new DaoAssignment();
         this.daoStudent = new DaoStudent();
@@ -123,15 +123,15 @@ public class MentorController {
     public String toString() {
         StringBuilder mentorBuilder = new StringBuilder();
         mentorBuilder.append("id: ");
-        mentorBuilder.append(loggedmentor.getId() + " ");
+        mentorBuilder.append(loggedMentor.getId() + " ");
         mentorBuilder.append("login: ");
-        mentorBuilder.append(loggedmentor.getLogin() + " ");
+        mentorBuilder.append(loggedMentor.getLogin() + " ");
         mentorBuilder.append("user type: ");
-        mentorBuilder.append(loggedmentor.getUserType() + "\n");
+        mentorBuilder.append(loggedMentor.getUserType() + "\n");
         mentorBuilder.append("name: ");
-        mentorBuilder.append(loggedmentor.getName() + " ");
+        mentorBuilder.append(loggedMentor.getName() + " ");
         mentorBuilder.append("surname: ");
-        mentorBuilder.append(loggedmentor.getSurname());
+        mentorBuilder.append(loggedMentor.getSurname());
         return mentorBuilder.toString();
     }
 
