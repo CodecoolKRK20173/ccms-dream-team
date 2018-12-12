@@ -106,7 +106,7 @@ public class DaoAssignment implements DAOAssignment {
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             stmt = c.createStatement();
             stmt.executeUpdate("UPDATE Assignments SET grade = " + newGrade + "WHERE studentId = " + studentId + "AND title = '" + title + "';");
-        } catch (SQLException e){
+        } catch (Exception e){
             System.out.println(e.getClass().getName() + " : " + e.getMessage());}
     }
 }
