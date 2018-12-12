@@ -171,17 +171,22 @@ public class View {
     }
 
     public static void showListOfAssignments(ArrayList<Assignment> assignments) {
-        String leftAlignFormat = "|  %-3d | %-12s |  %-20s  |%n";
-        System.out.format("+------+--------------+------------------------+%n");
-        System.out.format("|  ID  |  StudentID   |  Title                 |%n");
-        System.out.format("+------+--------------+------------------------+%n");
+        DaoStudent daoStudent = new DaoStudent();
+
+        String leftAlignFormat = "|  %-7d | %-9s | %-12s |  %-20s  | %-8d  |%n";
+        System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
+        System.out.format("| AssignID | StudentID | Login        |  Title                 | Grade     |%n");
+        System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
 
         for (int i = 0; i < assignments.size(); i++) {
             int assignId = assignments.get(i).getAssignId();
             int studentId = assignments.get(i).getStudentId();
+            int grade = assignments.get(i).getGrade();
+            Student student = daoStudent.getStudent(studentId);
+            String login = student.getLogin();
             String title = assignments.get(i).getTitle();
-            System.out.format(leftAlignFormat, assignId, studentId, title);
-            System.out.format("+------+--------------+------------------------+%n");
+            System.out.format(leftAlignFormat, assignId, studentId, login,  title, grade);
+            System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
         }
     }
 
