@@ -2,6 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class DaoAssignment implements DAOAssignment {
     private Connection c = null;
@@ -95,5 +96,17 @@ public class DaoAssignment implements DAOAssignment {
 
             }
         }
+    }
+
+    public void gradeAssigment(int studentId, String title, int newGrade){
+        Connection c = null;
+        Statement stmt = null;
+        try{
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            stmt = c.createStatement();
+            stmt.executeUpdate("UPDATE Assignments SET grade = " + newGrade + "WHERE studentId = " + studentId + "AND title = '" + title + "';");
+        } catch (SQLException e){
+            System.out.println(e.getClass().getName() + " : " + e.getMessage());}
     }
 }

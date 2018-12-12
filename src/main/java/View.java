@@ -198,4 +198,21 @@ public class View {
 //    public void showUserType(User user){
 //        System.out.println(user.getUserType());
 //    }
+
+    public int takeStudentId(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter student Id: ");
+        int studentId = scanner.nextInt();
+        return studentId;
+    }
+
+    public int enterNewGrade(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter grade (form 0 to 100) : ");
+        int grade = scanner.nextInt();
+        if (grade <= 100 && grade >= 0){
+            return grade;
+        } else {System.out.println("Wrong grade !");}
+        return 0;
+    }
 }

@@ -8,8 +8,7 @@ public class MentorController {
     private View view;
     private DAOMentor dao;
 //    private DAOStudent daoStudent;
-
-    private DAOAssignment daoAssignment;
+    private DaoAssignment daoAssignment;
 
     public MentorController(int id, View view, DAOMentor dao){
         this.dao = dao;
@@ -150,6 +149,10 @@ public class MentorController {
             daoAssignment.addAssignment(assignment);
         }
 
+    }
+
+    public void gradeStudentAssignment(){
+        daoAssignment.gradeAssigment(view.takeStudentId(), view.getAssignmentTitle(), view.enterNewGrade());
     }
 
     public void addAssigment() throws NotImplementedException {
