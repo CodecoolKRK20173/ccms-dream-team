@@ -1,8 +1,6 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.Console;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class View {
@@ -27,7 +25,7 @@ public class View {
                 " (1) List students\n" +
                 " (2) Add assignment\n" +
                 " (3) Grade assignment\n" +
-                " (4) Attendance check\n" +
+                " (4) Show list of assignments\n" +
                 " (5) Add student\n" +
                 " (6) Remove student\n" +
                 " (7) Edit student\n" +
@@ -169,8 +167,22 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         String option = scanner.nextLine();
-        //scanner.close();
         return option;
+    }
+
+    public static void showListOfAssignments(ArrayList<Assignment> assignments) {
+        String leftAlignFormat = "|  %-3d | %-12s |  %-20s  |%n";
+        System.out.format("+------+--------------+------------------------+%n");
+        System.out.format("|  ID  |  StudentID   |  Title                 |%n");
+        System.out.format("+------+--------------+------------------------+%n");
+
+        for (int i = 0; i < assignments.size(); i++) {
+            int assignId = assignments.get(i).getAssignId();
+            int studentId = assignments.get(i).getStudentId();
+            String title = assignments.get(i).getTitle();
+            System.out.format(leftAlignFormat, assignId, studentId, title);
+            System.out.format("+------+--------------+------------------------+%n");
+        }
     }
 
 //    public void showUserType(User user){
