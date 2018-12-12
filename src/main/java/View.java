@@ -1,8 +1,6 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.io.Console;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class View {
@@ -27,7 +25,7 @@ public class View {
                 " (1) List students\n" +
                 " (2) Add assignment\n" +
                 " (3) Grade assignment\n" +
-                " (4) Attendance check\n" +
+                " (4) Show list of assignments\n" +
                 " (5) Add student\n" +
                 " (6) Remove student\n" +
                 " (7) Edit student\n" +
@@ -49,7 +47,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
-        //scanner.close();
         return link;
     }
 
@@ -57,7 +54,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         String option = scanner.nextLine();
-        //scanner.close();
         return option;
     }
 
@@ -65,7 +61,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter title: ");
         String option = scanner.nextLine();
-        //scanner.close();
         return option;
     }
 
@@ -73,7 +68,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         String id = scanner.nextLine();
-        //scanner.close();
         return Integer.parseInt(id);
     }
 
@@ -81,7 +75,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put the assignment link: ");
         String link = scanner.nextLine();
-//        scanner.close();
         return link;
     }
 
@@ -94,24 +87,8 @@ public class View {
     }
 
     public String getPasswordFromUser(){
-//        Console cnsl = null;
-//        try {
-//            cnsl = System.console();
-//            if (cnsl != null) {
-//                //login = cnsl.readLine("Please provide a username: ");
-//                char[] pwd = cnsl.readPassword("Enter password: ");
-//                String password = String.valueOf(pwd);
-//                return password;
-//            }
-//        } catch(Exception ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter password:\t");
-        String password = scanner.nextLine();
-        //scanner.close();
+        char[] passwd = System.console().readPassword("%s", "Enter user password:\n");
+        String password = String.valueOf(passwd);
         return password;
     }
 
@@ -119,7 +96,6 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name:\t");
         String name = scanner.nextLine();
-        //scanner.close();
         return name;
     }
 
@@ -191,8 +167,27 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         String option = scanner.nextLine();
-        //scanner.close();
         return option;
+    }
+
+    public static void showListOfAssignments(ArrayList<Assignment> assignments) {
+        DaoStudent daoStudent = new DaoStudent();
+
+        String leftAlignFormat = "|  %-7d | %-9s | %-12s |  %-20s  | %-8d  |%n";
+        System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
+        System.out.format("| AssignID | StudentID | Login        |  Title                 | Grade     |%n");
+        System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
+
+        for (int i = 0; i < assignments.size(); i++) {
+            int assignId = assignments.get(i).getAssignId();
+            int studentId = assignments.get(i).getStudentId();
+            int grade = assignments.get(i).getGrade();
+            Student student = daoStudent.getStudent(studentId);
+            String login = student.getLogin();
+            String title = assignments.get(i).getTitle();
+            System.out.format(leftAlignFormat, assignId, studentId, login,  title, grade);
+            System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
+        }
     }
 
 //    public void showUserType(User user){

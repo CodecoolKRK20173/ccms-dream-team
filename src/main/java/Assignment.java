@@ -1,6 +1,5 @@
 public class Assignment {
 
-//    int assignId;
     int studentId;
     String title;
     String link;
@@ -14,6 +13,14 @@ public class Assignment {
         this.grade = 0;
     }
     public Assignment(int studentId, String title, String link, int grade) {
+        this.studentId = studentId;
+        this.title = title;
+        this.link = link;
+        this.grade = grade;
+    }
+
+    public Assignment(int assignId, int studentId, String title, String link, int grade) {
+        this.assignId = assignId;
         this.studentId = studentId;
         this.title = title;
         this.link = link;

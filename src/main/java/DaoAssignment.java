@@ -1,8 +1,5 @@
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class DaoAssignment implements DAOAssignment {
     private Connection c = null;
@@ -98,15 +95,50 @@ public class DaoAssignment implements DAOAssignment {
         }
     }
 
-    public void gradeAssigment(int studentId, String title, int newGrade){
+    public void gradeAssigment(int studentId, String title, int newGrade) {
         Connection c = null;
         Statement stmt = null;
-        try{
+        try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             stmt = c.createStatement();
             stmt.executeUpdate("UPDATE Assignments SET grade = " + newGrade + "WHERE studentId = " + studentId + "AND title = '" + title + "';");
-        } catch (Exception e){
-            System.out.println(e.getClass().getName() + " : " + e.getMessage());}
+        } catch (Exception e) {
+            System.out.println(e.getClass().getName() + " : " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Assignment> getAllAssignments() {
+        ArrayList<Assignment> assignments = new ArrayList<>();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
+            sqlStatement = c.prepareStatement("SELECT * FROM Assignments");
+            ResultSet recordFromDatabase = sqlStatement.executeQuery();
+
+            while (recordFromDatabase.next()) {
+                int assignId = recordFromDatabase.getInt("assignId");
+                int studentId = recordFromDatabase.getInt("studentId");
+                String title = recordFromDatabase.getString("title");
+                String link = recordFromDatabase.getString("link");
+                int grade = recordFromDatabase.getInt("grade");
+                Assignment assignment = new Assignment(assignId, studentId, title, link, grade);
+                assignments.add(assignment);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        } finally {
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e){
+
+            }
+        }
+        if (assignments.isEmpty()) {
+            return null;
+        }
+        return assignments;
     }
 }
