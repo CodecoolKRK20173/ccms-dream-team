@@ -7,7 +7,7 @@ public class MentorController {
     private Mentor loggedmentor;
     private View view;
     private DAOMentor dao;
-//    private DAOStudent daoStudent;
+    private DAOStudent daoStudent;
 
     private DAOAssignment daoAssignment;
 
@@ -16,7 +16,7 @@ public class MentorController {
         this.loggedmentor = getMentor(id);
         this.view = view;
         this.daoAssignment = new DaoAssignment();
-//        this.daoStudent = new DaoStudent();
+        this.daoStudent = new DaoStudent();
         run();
     }
 
@@ -32,31 +32,29 @@ public class MentorController {
 
             switch (option){
                 case "1":
-                    view.clearScreen();
+                    View.clearScreen();
                     View.showListOfStudents(dao.getStudents());
                     break;
                 case "2":
-                    view.clearScreen();
+                    View.clearScreen();
                     addAssignment();
-                    System.out.println("Work in progress...");
-                    System.out.println();
                     break;
                 case "3":
-                    view.clearScreen();
+                    View.clearScreen();
                     System.out.println("Work in progress...");
                     System.out.println();
                     break;
                 case "4":
-                    view.clearScreen();
+                    View.clearScreen();
                     System.out.println("Work in progress...");
                     System.out.println();
                     break;
                 case "5":
-                    view.clearScreen();
+                    View.clearScreen();
                     addStudent();
                     break;
                 case "6":
-                    view.clearScreen();
+                    View.clearScreen();
                     removeStudent();
                     break;
                 case "7":
@@ -67,7 +65,7 @@ public class MentorController {
                     isActive = false;
                     break;
                 default:
-                    view.clearScreen();
+                    View.clearScreen();
                     System.out.println("  Invalid option input.\n");
             }
         }
@@ -95,36 +93,35 @@ public class MentorController {
     }
 
     public void editStudentData() {
-//        String newLogin;
-//        String newPassword;
-//        String newName;
-//        String newSurname;
-//
-        int id = view.getId();
-//        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
-//
-//        if (view.takeNameFromUser().equals("y")){
-//            newName = view.takeNameFromUser();
-//        } else {
-//            newName = daoStudent.getStudent(id).getName();
-//        }
-//        if (view.takeSurnameFromUser().equals("y")){
-//            newSurname = view.takeSurnameFromUser();
-//        } else {
-//            newSurname = daoStudent.getStudent(id).getSurname();
-//        }
-//        if (view.getNickFromUser().equals("y")){
-//            newLogin = view.getNickFromUser();
-//        } else {
-//            newLogin = daoStudent.getStudent(id).getLogin();
-//        }
-//        if (view.getPasswordFromUser().equals("y")){
-//            newPassword = view.getPasswordFromUser();
-//        } else {
-//            newPassword = daoStudent.getStudent(id).getPassword();
-//        }
+        String newLogin = "login";
+        String newPassword = "password";
+        String newName = "name";
+        String newSurname = "surname";
 
-        dao.editStudent(id);
+        int id = view.getId();
+
+        if (view.getUserChoice(newName).equals("y")){
+            newName = view.takeNameFromUser();
+        } else {
+            newName = daoStudent.getStudent(id).getName();
+        }
+        if (view.getUserChoice(newSurname).equals("y")){
+            newSurname = view.takeSurnameFromUser();
+        } else {
+            newSurname = daoStudent.getStudent(id).getSurname();
+        }
+        if (view.getUserChoice(newLogin).equals("y")){
+            newLogin = view.getNickFromUser();
+        } else {
+            newLogin = daoStudent.getStudent(id).getLogin();
+        }
+        if (view.getUserChoice(newPassword).equals("y")){
+            newPassword = view.getPasswordFromUser();
+        } else {
+            newPassword = daoStudent.getStudent(id).getPassword();
+        }
+
+        dao.editStudent(id,newLogin,newPassword,newName,newSurname);
     }
 
     public String toString() {
@@ -142,7 +139,7 @@ public class MentorController {
         return mentorBuilder.toString();
     }
 
-    public void  addAssignment() {
+    public void addAssignment() {
         ArrayList<Student> students = dao.getStudents();
         String title = view.getAssignmentTitle();
         for(Student student : students) {
@@ -150,9 +147,6 @@ public class MentorController {
             daoAssignment.addAssignment(assignment);
         }
 
-    }
-
-    public void addAssigment() throws NotImplementedException {
     }
 
     public void gradeAssigment() throws NotImplementedException {

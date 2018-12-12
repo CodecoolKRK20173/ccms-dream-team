@@ -1,12 +1,8 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.io.Console;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class View {
-    public void adminMenu(){
+    public void adminMenu() {
         System.out.println("What would you like to do:\n " +
                 " (1) List mentors\n " +
                 " (2) List students\n " +
@@ -16,13 +12,13 @@ public class View {
                 " (0) Logout");
     }
 
-    public void officeMenu(){
+    public void officeMenu() {
         System.out.println("What would you like to do:\n" +
                 " (1) List students\n" +
                 " (0) Logout");
     }
 
-    public void mentorMenu(){
+    public void mentorMenu() {
         System.out.println("What would you like to do:\n" +
                 " (1) List students\n" +
                 " (2) Add assignment\n" +
@@ -34,11 +30,11 @@ public class View {
                 " (0) Logout CcMS");
     }
 
-    public  void printEmptyLine() {
+    public void printEmptyLine() {
         System.out.println();
     }
 
-    public void studentMenu(){
+    public void studentMenu() {
         System.out.println("What would you like to do:\n" +
                 " (1) Submit assignment\n" +
                 " (2) View grades\n" +
@@ -52,21 +48,21 @@ public class View {
         return link;
     }
 
-    public String getOption(){
+    public String getOption() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         String option = scanner.nextLine();
         return option;
     }
 
-    public String getAssignmentTitle(){
+    public String getAssignmentTitle() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter title: ");
         String option = scanner.nextLine();
         return option;
     }
 
-    public int getId(){
+    public int getId() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         String id = scanner.nextLine();
@@ -80,7 +76,7 @@ public class View {
         return link;
     }
 
-    public String getNickFromUser(){
+    public String getNickFromUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter user login: ");
         String nick = scanner.nextLine();
@@ -88,20 +84,20 @@ public class View {
         return nick;
     }
 
-    public String getPasswordFromUser(){
+    public String getPasswordFromUser() {
         char[] passwd = System.console().readPassword("%s", "Enter user password:\n");
         String password = String.valueOf(passwd);
         return password;
     }
 
-    public String takeNameFromUser(){
+    public String takeNameFromUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name:\t");
         String name = scanner.nextLine();
         return name;
     }
 
-    public String takeSurnameFromUser(){
+    public String takeSurnameFromUser() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter surname:\t");
         String surname = scanner.nextLine();
@@ -109,15 +105,15 @@ public class View {
         return surname;
     }
 
-    public void showGrades (ArrayList<Assignment> assignments){
-        for(Assignment assi : assignments) {
+    public void showGrades(ArrayList<Assignment> assignments) {
+        for (Assignment assi : assignments) {
             System.out.println(assi.getAssignId() + " - " + assi.getTitle() + " - grade: " + assi.getGrade());
 
         }
     }
 
-    public void showAssignmentsIdxs (ArrayList<Assignment> assignments){
-        for(Assignment assi : assignments) {
+    public void showAssignmentsIdxs(ArrayList<Assignment> assignments) {
+        for (Assignment assi : assignments) {
             System.out.println(assi.getAssignId() + " - " + assi.getTitle());
         }
     }
@@ -129,7 +125,7 @@ public class View {
         System.out.format("|  ID  |  Login       |  Name          |  Surname       |   User type  |%n");
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
 
-        for (int i = 0; i < students.size() ; i++) {
+        for (int i = 0; i < students.size(); i++) {
             int id = students.get(i).getId();
             String login = students.get(i).getLogin();
             String name = students.get(i).getName();
@@ -154,7 +150,7 @@ public class View {
         System.out.format("|  ID  |  Login       |  Name          |  Surname       |   User type  |%n");
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
 
-        for (int i = 0; i < mentors.size() ; i++) {
+        for (int i = 0; i < mentors.size(); i++) {
             int id = mentors.get(i).getId();
             String login = mentors.get(i).getLogin();
             String name = mentors.get(i).getName();
@@ -165,7 +161,7 @@ public class View {
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
     }
 
-    public String getOptionForMenu(){
+    public String getOptionForMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         String option = scanner.nextLine();
@@ -173,7 +169,12 @@ public class View {
         return option;
     }
 
-//    public void showUserType(User user){
-//        System.out.println(user.getUserType());
-//    }
+    public String getUserChoice(String editedData) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Press 'y' if you want to modify "
+                            +"\033[1m" + editedData +"\033[0m" +
+                            "\nor press \033[4m'Enter'\033[0m if you want to keep old version");
+        String userChoice = scan.nextLine();
+        return userChoice;
+    }
 }
