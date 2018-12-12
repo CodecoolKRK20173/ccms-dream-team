@@ -23,7 +23,7 @@ public class View {
                 " (1) List students\n" +
                 " (2) Add assignment\n" +
                 " (3) Grade assignment\n" +
-                " (4) Attendance check\n" +
+                " (4) Show list of assignments\n" +
                 " (5) Add student\n" +
                 " (6) Remove student\n" +
                 " (7) Edit student\n" +
@@ -165,16 +165,52 @@ public class View {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option number: ");
         String option = scanner.nextLine();
-        //scanner.close();
         return option;
     }
 
     public String getUserChoice(String editedData) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Press 'y' if you want to modify "
-                            +"\033[1m" + editedData +"\033[0m" +
-                            "\nor press \033[4m'Enter'\033[0m if you want to keep old version");
+                + "\033[1m" + editedData + "\033[0m" +
+                "\nor press \033[4m'Enter'\033[0m if you want to keep old version");
         String userChoice = scan.nextLine();
         return userChoice;
+    }
+
+    public static void showListOfAssignments(ArrayList<Assignment> assignments) {
+        DaoStudent daoStudent = new DaoStudent();
+
+        String leftAlignFormat = "|  %-7d | %-9s | %-12s |  %-20s  | %-8d  |%n";
+        System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
+        System.out.format("| AssignID | StudentID | Login        |  Title                 | Grade     |%n");
+        System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
+
+        for (int i = 0; i < assignments.size(); i++) {
+            int assignId = assignments.get(i).getAssignId();
+            int studentId = assignments.get(i).getStudentId();
+            int grade = assignments.get(i).getGrade();
+            Student student = daoStudent.getStudent(studentId);
+            String login = student.getLogin();
+            String title = assignments.get(i).getTitle();
+            System.out.format(leftAlignFormat, assignId, studentId, login,  title, grade);
+            System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
+        }
+    }
+
+    public int takeStudentId(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter student Id: ");
+        int studentId = scanner.nextInt();
+        return studentId;
+    }
+
+    public int enterNewGrade(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter grade (form 0 to 100) : ");
+        int grade = scanner.nextInt();
+        if (grade <= 100 && grade >= 0){
+            return grade;
+        } else {System.out.println("Wrong grade !");}
+        return 0;
     }
 }

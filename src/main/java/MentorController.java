@@ -1,5 +1,4 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.ArrayList;
 
 public class MentorController {
@@ -8,7 +7,6 @@ public class MentorController {
     private View view;
     private DAOMentor dao;
     private DAOStudent daoStudent;
-
     private DAOAssignment daoAssignment;
 
     public MentorController(int id, View view, DAOMentor dao){
@@ -40,13 +38,12 @@ public class MentorController {
                     addAssignment();
                     break;
                 case "3":
-                    View.clearScreen();
-                    System.out.println("Work in progress...");
-                    System.out.println();
+                    view.clearScreen();
+                    gradeStudentAssignment();
                     break;
                 case "4":
-                    View.clearScreen();
-                    System.out.println("Work in progress...");
+                    view.clearScreen();
+                    View.showListOfAssignments(daoAssignment.getAllAssignments());
                     System.out.println();
                     break;
                 case "5":
@@ -58,7 +55,6 @@ public class MentorController {
                     removeStudent();
                     break;
                 case "7":
-//                    view.clearScreen();
                     editStudentData();
                     break;
                 case "0":
@@ -146,12 +142,14 @@ public class MentorController {
             Assignment assignment = new Assignment(student.getId(), title);
             daoAssignment.addAssignment(assignment);
         }
-
     }
 
     public void gradeAssigment() throws NotImplementedException {
     }
 
-    public void checkAttendence() throws NotImplementedException {
+    public void checkAttendence() throws NotImplementedException {}
+
+    public void gradeStudentAssignment(){
+        daoAssignment.gradeAssigment(view.takeStudentId(), view.getAssignmentTitle(), view.enterNewGrade());
     }
 }
