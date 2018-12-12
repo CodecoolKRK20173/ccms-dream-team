@@ -6,7 +6,6 @@ public class MentorController {
     private Mentor loggedmentor;
     private View view;
     private DAOMentor dao;
-
     private DAOAssignment daoAssignment;
     private DaoAssignment daoAssignment2;
 
