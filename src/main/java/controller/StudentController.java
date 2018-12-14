@@ -1,3 +1,12 @@
+package controller;
+
+import dao.DAOAssignment;
+import dao.DAOStudent;
+import dao.DaoAssignment;
+import display.View;
+import model.Assignment;
+import user.Student;
+
 import java.util.*;
 public class StudentController {
 
@@ -38,7 +47,7 @@ public class StudentController {
                     String assignmentLink = view.getAssignmentLink();
                     this.daoAssignment.submitAssignment(this.loggedStudent, assignId, assignmentLink);
                 } catch (NumberFormatException e) {
-                    System.out.println("Wrong assignmnent id");
+                    System.out.println("Wrong assignment id");
                 }
             }
             else if(option.equals("2")) {

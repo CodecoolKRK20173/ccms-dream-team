@@ -34,9 +34,9 @@ class DaoMentorTest {
         String actualLogin = mentor.getLogin();
 
         //then
-        // to finish this test we need to addMentor by DaoAdmin class
+        // to finish this test we need to addMentor by dao.DaoAdmin class
         assertEquals(expectedLogin, actualLogin);
-        System.out.println("Mentor loaded from database test passed");
+        System.out.println("user.Mentor loaded from database test passed");
 
         //clean
         daoAdmin.removeMentor(sampleUserId);
@@ -63,7 +63,7 @@ class DaoMentorTest {
     @Test
     void removeStudent() {
         daoMentor.removeStudent(1);
-        assertNull(daoMentor.getStudents().get(0),"Student deleted from database");
+        assertNull(daoMentor.getStudents().get(0),"user.Student deleted from database");
         System.out.println("test if student is deleted from database passed");
     }
 }

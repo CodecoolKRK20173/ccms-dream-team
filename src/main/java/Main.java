@@ -1,3 +1,6 @@
+import controller.MasterController;
+import display.View;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,7 +11,7 @@ public class Main {
     public static void run() {
         View view = new View();
         boolean isActive = true;
-        while (isActive) { //lipne to jest mentorzy od razu się skrzywią xD
+        while (isActive) {
             View.clearScreen();
             System.out.println("Welcome into CcMS\n" +
                                 "(1) Login\n" +

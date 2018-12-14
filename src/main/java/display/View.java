@@ -1,5 +1,13 @@
+package display;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import dao.DaoStudent;
+import model.Assignment;
+import user.Mentor;
+import user.Student;
 
 public class View {
     public void adminMenu() {
@@ -118,7 +126,7 @@ public class View {
         }
     }
 
-    public static void showListOfStudents(ArrayList<Student> students) {
+    public static void showListOfStudents(List<Student> students) {
 
         String leftAlignFormat = "|  %-3d | %-12s |  %-12s  |  %-12s  |  %-10s  |%n";
         System.out.format("+------+--------------+----------------+----------------+--------------+%n");
@@ -192,25 +200,27 @@ public class View {
             Student student = daoStudent.getStudent(studentId);
             String login = student.getLogin();
             String title = assignments.get(i).getTitle();
-            System.out.format(leftAlignFormat, assignId, studentId, login,  title, grade);
+            System.out.format(leftAlignFormat, assignId, studentId, login, title, grade);
             System.out.format("+----------+-----------+--------------+------------------------+-----------+%n");
         }
     }
 
-    public int takeStudentId(){
+    public int takeStudentId() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student Id: ");
         int studentId = scanner.nextInt();
         return studentId;
     }
 
-    public int enterNewGrade(){
+    public int enterNewGrade() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter grade (form 0 to 100) : ");
         int grade = scanner.nextInt();
-        if (grade <= 100 && grade >= 0){
+        if (grade <= 100 && grade >= 0) {
             return grade;
-        } else {System.out.println("Wrong grade !");}
+        } else {
+            System.out.println("Wrong grade !");
+        }
         return 0;
     }
 }

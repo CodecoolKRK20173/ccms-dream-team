@@ -1,3 +1,11 @@
+package controller;
+
+import dao.DaoAdmin;
+import dao.DaoMentor;
+import dao.DaoOffice;
+import dao.DaoStudent;
+import display.View;
+
 import java.sql.*;
 
 public class MasterController {
@@ -13,7 +21,6 @@ public class MasterController {
 
     public void login(String login, String password) {
         try {
-            //connect();
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             sqlStatement = c.prepareStatement("SELECT * FROM Users WHERE login LIKE ? AND password LIKE ?");
@@ -40,11 +47,9 @@ public class MasterController {
                     c.close();
                     System.out.println("  Wrong login or password (or both).");
                 }
-            } else {  System.out.println("  Wrong login or password (or both).");  }
-//            recordFromDatabase.close();
-//            //disconnect();
-//            sqlStatement.close();
-//            c.close();
+            } else {
+                System.out.println("  Wrong login or password (or both).");
+            }
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -55,7 +60,6 @@ public class MasterController {
     private void createUserController(int id, String userType) throws SQLException {
         try {
             if (this.userType.equals("admin")) {
-                //disconnect();
                 sqlStatement.close();
                 c.close();
                 new AdminController(this.id, this.view, new DaoAdmin());
@@ -63,27 +67,19 @@ public class MasterController {
                 sqlStatement.close();
                 c.close();
                 new OfficeController(this.id, this.view, new DaoOffice());
-            }
-            else if(this.userType.equals("mentor")) {
+            } else if (this.userType.equals("mentor")) {
                 sqlStatement.close();
                 c.close();
                 new MentorController(this.id, this.view, new DaoMentor());
-            }
-            else if(this.userType.equals("student")) {
-                    sqlStatement.close();
-                    c.close();
+            } else if (this.userType.equals("student")) {
+                sqlStatement.close();
+                c.close();
                 new StudentController(this.id, this.view, new DaoStudent());
             }
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
-
-        }
+}
     }
-    //        public void disconnect() throws SQLException {
-    //            sqlStatement.close();
-    //            c.close();
-    //        }
-
 }

@@ -1,3 +1,8 @@
+package controller;
+
+import dao.DAOOffice;
+import display.View;
+
 public class OfficeController {
     private int id;
     private View view;
@@ -8,12 +13,12 @@ public class OfficeController {
         this.id = id;
         this.view = view;
         this.daoOffice = daoOffice;
-        run(); // wiem że w konstruktorze, potem wyrzucę gdzie indziej heheszki
+        run();
     }
 
 
     public void run() {
-        String option ="";
+        String option = "";
 
         while (!option.equals("0")) {
             view.officeMenu();
@@ -23,7 +28,6 @@ public class OfficeController {
                     view.clearScreen();
                     view.showListOfStudents(daoOffice.getStudents());
                     break;
-//
                 default:
                     view.clearScreen();
                     System.out.println("  Invalid option input.\n");
@@ -31,7 +35,4 @@ public class OfficeController {
             }
         }
     }
-
-
-
 }

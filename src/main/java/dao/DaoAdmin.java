@@ -1,10 +1,13 @@
+package dao;
+
+import display.View;
+import user.Mentor;
+import user.Student;
+import user.User;
+
 import java.sql.*;
-import java.util.Scanner;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DaoAdmin implements DAOAdmin {
     private Connection c = null;
@@ -28,11 +31,11 @@ public class DaoAdmin implements DAOAdmin {
             sqlStatement.setString(5, userType);
 
             sqlStatement.executeUpdate();
-            System.out.println("  Mentor " + name + " added to database successfully");
+            System.out.println("  user.Mentor " + name + " added to database successfully");
             sqlStatement.close();
             c.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } finally {
             try {
@@ -54,9 +57,9 @@ public class DaoAdmin implements DAOAdmin {
             sqlStatement.setInt(1, id);
             sqlStatement.executeUpdate();
             View.clearScreen();
-            System.out.println("  Mentor deleted from database successfully");
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.out.println("  user.Mentor deleted from database successfully");
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } finally {
             try {
@@ -83,24 +86,24 @@ public class DaoAdmin implements DAOAdmin {
             if (inputColumn.equals("Name")) {
                 System.out.println("Enter new name:\t");
                 String newName = scanner.nextLine();
-                stmt.executeUpdate( "UPDATE Users SET NAME = '" + newName +"' WHERE ID = " + id + ";");
+                stmt.executeUpdate("UPDATE Users SET NAME = '" + newName + "' WHERE ID = " + id + ";");
             }
-            if (inputColumn.equals("Surname")){
+            if (inputColumn.equals("Surname")) {
                 System.out.println("Enter new surname:\t");
                 String newSurname = scanner.nextLine();
-                stmt.executeUpdate("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id +";" );
+                stmt.executeUpdate("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id + ";");
             }
-            if (inputColumn.equals("Login")){
+            if (inputColumn.equals("Login")) {
                 System.out.println("Enter new login:\t");
                 String newLogin = scanner.nextLine();
                 stmt.executeUpdate("UPDATE Users set LOGIN = '" + newLogin + "' WHERE ID = " + id + ";");
             }
-            if (inputColumn.equals("Password")){
+            if (inputColumn.equals("Password")) {
                 System.out.println("Enter new password:\t");
                 String newLogin = scanner.nextLine();
                 stmt.executeUpdate("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
             }
-            if (inputColumn.equals("Type")){
+            if (inputColumn.equals("Type")) {
                 System.out.println("Enter new type:\t");
                 String newLogin = scanner.nextLine();
                 stmt.executeUpdate("UPDATE Users set TYPE = '" + newLogin + "' WHERE ID = " + id + ";");
@@ -109,10 +112,10 @@ public class DaoAdmin implements DAOAdmin {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } finally {
-            try{
+            try {
                 stmt.close();
                 c.close();
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println(e.getClass().getName() + ": " + e.getMessage());
             }
         }
@@ -127,21 +130,21 @@ public class DaoAdmin implements DAOAdmin {
             sqlStatement = c.prepareStatement("SELECT * FROM Users WHERE userType LIKE 'mentor'");
 
             ResultSet recordFromDatabase = sqlStatement.executeQuery();
-            while ( recordFromDatabase.next() ) {
+            while (recordFromDatabase.next()) {
                 int id = recordFromDatabase.getInt("id");
                 String login = recordFromDatabase.getString("login");
                 String password = recordFromDatabase.getString("password");
                 String name = recordFromDatabase.getString("name");
                 String surname = recordFromDatabase.getString("surname");
                 String userType = recordFromDatabase.getString("userType");
-                mentors.add(new Mentor(id, login, password, name, surname, userType) );
+                mentors.add(new Mentor(id, login, password, name, surname, userType));
             }
 
             recordFromDatabase.close();
             sqlStatement.close();
             c.close();
-        } catch ( Exception e ) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } finally {
             try {
@@ -152,7 +155,7 @@ public class DaoAdmin implements DAOAdmin {
             }
         }
 
-            return mentors;
+        return mentors;
     }
 
 

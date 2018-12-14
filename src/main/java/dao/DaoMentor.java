@@ -1,15 +1,19 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+package dao;
 
-import java.sql.*;
+import user.Mentor;
+import user.Student;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 public class DaoMentor implements DAOMentor {
 
     private Connection c = null;
     private PreparedStatement sqlStatement = null;
-    private Statement stmt = null;
-    private View view = null;
 
     @Override
     public Mentor getMentor(int id) {
@@ -38,18 +42,18 @@ public class DaoMentor implements DAOMentor {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } finally {
-        try {
-            sqlStatement.close();
-            c.close();
-        } catch (Exception e){
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e) {
+            }
         }
-    }
         return null;
     }
 
     @Override
-    public ArrayList<Student> getStudents() {
-        ArrayList<Student> students = new ArrayList<Student>();
+    public List<Student> getStudents() {
+        List<Student> students = new ArrayList<Student>();
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
@@ -70,12 +74,12 @@ public class DaoMentor implements DAOMentor {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } finally {
-        try {
-            sqlStatement.close();
-            c.close();
-        } catch (Exception e){
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e) {
+            }
         }
-    }
         return students;
     }
 
@@ -88,7 +92,6 @@ public class DaoMentor implements DAOMentor {
         String surname = student.getSurname();
 
         try {
-            //connect();
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             sqlStatement = c.prepareStatement("INSERT INTO Users (login, password, name, surname, userType) VALUES (?, ?, ?, ?, ?)");
@@ -100,16 +103,14 @@ public class DaoMentor implements DAOMentor {
 
             sqlStatement.executeUpdate();
             System.out.println("  Student " + name + " added to database successfully");
-            //return null;
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
-            //disconnect();
         } finally {
             try {
                 sqlStatement.close();
                 c.close();
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
     }
@@ -127,66 +128,17 @@ public class DaoMentor implements DAOMentor {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
         } finally {
-        try {
-            sqlStatement.close();
-            c.close();
-        } catch (Exception e){
+            try {
+                sqlStatement.close();
+                c.close();
+            } catch (Exception e) {
+            }
         }
-    }
     }
 
     @Override
-    public void editStudent(int id,String newLogin, String newPassword, String newName, String newSurname ) {
-
-//        String newLogin, String newPassword, String newName, String newSurname
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("What would you like to edit(Name, Surname, Login, Password):\n");
-//        String inputColumn = scan.nextLine();
-//
-//        Connection c = null;
-//        Statement stmt = null;
-//        try{
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
-//            stmt = c.createStatement();
-//            if (inputColumn.equals("Name")){
-//                System.out.println("Enter new name:\t");
-//                String newName = scan.nextLine();
-//                stmt.executeUpdate( "UPDATE Users SET NAME = '" + newName +"' WHERE ID = " + id + ";");
-//            }
-//            if (inputColumn.equals("Surname")){
-//                System.out.println("Enter new surname:\t");
-//                String newSurname = scan.nextLine();
-//                stmt.executeUpdate("UPDATE Users set SURNAME = '" + newSurname + "' WHERE ID = " + id +";" );
-//            }
-//            if (inputColumn.equals("Login")){
-//                System.out.println("Enter new login:\t");
-//                String newLogin = scan.nextLine();
-//                stmt.executeUpdate("UPDATE Users set LOGIN = '" + newLogin + "' WHERE ID = " + id + ";");
-//            }
-//            if (inputColumn.equals("Password")){
-//                System.out.println("Enter new password:\t");
-//                String newLogin = scan.nextLine();
-//                stmt.executeUpdate("UPDATE Users set PASSWORD = '" + newLogin + "' WHERE ID = " + id + ";");
-//            }
-//
-//            System.out.println("\nStudent eddited successfully!");
-//            System.out.println();
-//
-//        } catch (Exception e){
-//            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-//            System.exit(0);
-//        } finally {
-//            try{
-//                stmt.close();
-//                c.close();
-//            } catch (Exception e){
-//                System.err.println(e.getClass().getName() + ": " + e.getMessage());
-//            }
-//        }
-
+    public void editStudent(int id, String newLogin, String newPassword, String newName, String newSurname) {
         try {
-            //connect();
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");
             sqlStatement = c.prepareStatement("UPDATE Users set login = ?, password = ?, name = ?, surname = ? where ID = ?");
@@ -198,29 +150,18 @@ public class DaoMentor implements DAOMentor {
 
             sqlStatement.executeUpdate();
 
-            System.out.println("\nStudent eddited successfully!");
+            System.out.println("\nStudent edited successfully!");
             System.out.println();
 
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
-            //disconnect();
         } finally {
             try {
                 sqlStatement.close();
                 c.close();
-            } catch (Exception e){
+            } catch (Exception e) {
             }
         }
-    }
-
-    @Override
-    public void addAssigment() throws NotImplementedException {
-
-    }
-
-    @Override
-    public void gradeAssigment() throws NotImplementedException {
-
     }
 }

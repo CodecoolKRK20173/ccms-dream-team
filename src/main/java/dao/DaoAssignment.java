@@ -1,3 +1,8 @@
+package dao;
+
+import model.Assignment;
+import user.Student;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -96,8 +101,8 @@ public class DaoAssignment implements DAOAssignment {
     }
 
     public void gradeAssigment(int studentId, String title, int newGrade) {
-        Connection c = null;
-        Statement stmt = null;
+        Connection c;
+        Statement stmt;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:src/main/resources/ccms.db");

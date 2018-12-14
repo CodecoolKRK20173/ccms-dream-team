@@ -1,5 +1,13 @@
+package controller;
+
+import dao.*;
+import display.View;
+import model.Assignment;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import java.util.ArrayList;
+import user.Mentor;
+import user.Student;
+
+import java.util.List;
 
 public class MentorController {
 
@@ -9,7 +17,7 @@ public class MentorController {
     private DAOStudent daoStudent;
     private DAOAssignment daoAssignment;
 
-    public MentorController(int id, View view, DAOMentor dao){
+    public MentorController(int id, View view, DAOMentor dao) {
         this.dao = dao;
         this.loggedMentor = getMentor(id);
         this.view = view;
@@ -22,13 +30,13 @@ public class MentorController {
         return view;
     }
 
-    public void run(){
+    public void run() {
         boolean isActive = true;
-        while (isActive){
+        while (isActive) {
             view.mentorMenu();
             String option = view.getOptionForMenu();
 
-            switch (option){
+            switch (option) {
                 case "1":
                     View.clearScreen();
                     View.showListOfStudents(dao.getStudents());
@@ -67,7 +75,7 @@ public class MentorController {
         }
     }
 
-    public Mentor getMentor(int id){
+    public Mentor getMentor(int id) {
         return dao.getMentor(id);
     }
 
@@ -80,7 +88,7 @@ public class MentorController {
         String name = view.takeNameFromUser();
         String surname = view.takeSurnameFromUser();
 
-        dao.addStudent(new Student(id, login, password,userType, name, surname));
+        dao.addStudent(new Student(id, login, password, userType, name, surname));
     }
 
     public void removeStudent() {
@@ -96,49 +104,35 @@ public class MentorController {
 
         int id = view.getId();
 
-        if (view.getUserChoice(newName).equals("y")){
+        if (view.getUserChoice(newName).equals("y")) {
             newName = view.takeNameFromUser();
         } else {
             newName = daoStudent.getStudent(id).getName();
         }
-        if (view.getUserChoice(newSurname).equals("y")){
+        if (view.getUserChoice(newSurname).equals("y")) {
             newSurname = view.takeSurnameFromUser();
         } else {
             newSurname = daoStudent.getStudent(id).getSurname();
         }
-        if (view.getUserChoice(newLogin).equals("y")){
+        if (view.getUserChoice(newLogin).equals("y")) {
             newLogin = view.getNickFromUser();
         } else {
             newLogin = daoStudent.getStudent(id).getLogin();
         }
-        if (view.getUserChoice(newPassword).equals("y")){
+        if (view.getUserChoice(newPassword).equals("y")) {
             newPassword = view.getPasswordFromUser();
         } else {
             newPassword = daoStudent.getStudent(id).getPassword();
         }
 
-        dao.editStudent(id,newLogin,newPassword,newName,newSurname);
+        dao.editStudent(id, newLogin, newPassword, newName, newSurname);
     }
 
-    public String toString() {
-        StringBuilder mentorBuilder = new StringBuilder();
-        mentorBuilder.append("id: ");
-        mentorBuilder.append(loggedMentor.getId() + " ");
-        mentorBuilder.append("login: ");
-        mentorBuilder.append(loggedMentor.getLogin() + " ");
-        mentorBuilder.append("user type: ");
-        mentorBuilder.append(loggedMentor.getUserType() + "\n");
-        mentorBuilder.append("name: ");
-        mentorBuilder.append(loggedMentor.getName() + " ");
-        mentorBuilder.append("surname: ");
-        mentorBuilder.append(loggedMentor.getSurname());
-        return mentorBuilder.toString();
-    }
 
     public void addAssignment() {
-        ArrayList<Student> students = dao.getStudents();
+        List<Student> students = dao.getStudents();
         String title = view.getAssignmentTitle();
-        for(Student student : students) {
+        for (Student student : students) {
             Assignment assignment = new Assignment(student.getId(), title);
             daoAssignment.addAssignment(assignment);
         }
@@ -147,9 +141,10 @@ public class MentorController {
     public void gradeAssigment() throws NotImplementedException {
     }
 
-    public void checkAttendence() throws NotImplementedException {}
+    public void checkAttendence() throws NotImplementedException {
+    }
 
-    public void gradeStudentAssignment(){
+    public void gradeStudentAssignment() {
         daoAssignment.gradeAssigment(view.takeStudentId(), view.getAssignmentTitle(), view.enterNewGrade());
     }
 }

@@ -1,4 +1,4 @@
-
+package user;
 
 public abstract class User {
     private int id;
@@ -8,7 +8,7 @@ public abstract class User {
     private String name;
     private String surname;
 
-    public User (int id, String login, String password, String userType, String name, String surname){
+    public User(int id, String login, String password, String userType, String name, String surname) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -17,27 +17,27 @@ public abstract class User {
         this.surname = surname;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getLogin(){
+    public String getLogin() {
         return login;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
-    public String getUserType(){
+    public String getUserType() {
         return userType;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public String getSurname(){
+    public String getSurname() {
         return surname;
     }
 }
