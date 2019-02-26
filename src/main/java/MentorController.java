@@ -38,11 +38,11 @@ public class MentorController {
                     addAssignment();
                     break;
                 case "3":
-                    view.clearScreen();
+                    View.clearScreen();
                     gradeStudentAssignment();
                     break;
                 case "4":
-                    view.clearScreen();
+                    View.clearScreen();
                     View.showListOfAssignments(daoAssignment.getAllAssignments());
                     System.out.println();
                     break;
